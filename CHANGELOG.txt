@@ -1,0 +1,104 @@
+================================================================================
+  RESERVEQ — Project Changelog
+  ระบบจองคิวสำหรับร้านอาหาร & ธุรกิจขนาดเล็ก (Thai Market SaaS MVP)
+================================================================================
+
+[2026-05-21]  Initial MVP Build — Full Phase 1 Implementation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tech Stack
+  - Next.js 16.2.6 (App Router) + React 19 + TypeScript
+  - Supabase (PostgreSQL + Auth) via @supabase/ssr 0.10.3
+  - shadcn/ui + Tailwind CSS v4
+  - Recharts 3.x + date-fns 4.x
+  - Hosting target: Vercel
+
+Breaking Changes Discovered (Next.js 16 vs 14)
+  - middleware.ts is DEPRECATED → renamed to proxy.ts, function export renamed
+    from `middleware` to `proxy`
+  - params in pages/layouts are now Promises → must `await params` before use
+  - cookies() from next/headers is async → must `await cookies()`
+  - @supabase/ssr: get/set/remove cookie methods deprecated → must use
+    getAll/setAll instead
+
+Files Created
+  ┌─ Foundation ───────────────────────────────────────────────────────────────┐
+  │  .env.local                    Supabase URL + anon key                     │
+  │  proxy.ts                      Auth protection (replaces middleware.ts)    │
+  │  types/index.ts                Profile, Reservation, ReservationStatus     │
+  │  lib/supabase/client.ts        Browser-side Supabase client                │
+  │  lib/supabase/server.ts        Server-side Supabase client (async cookies) │
+  │  lib/utils/dateUtils.ts        generateTimeSlots, formatThaiDate, etc.     │
+  └────────────────────────────────────────────────────────────────────────────┘
+
+  ┌─ Pages ────────────────────────────────────────────────────────────────────┐
+  │  app/layout.tsx                Root layout (updated, Thai lang, Geist font)│
+  │  app/page.tsx                  Landing page — hero, features, pricing      │
+  │  app/(auth)/login/page.tsx     Email/password login                        │
+  │  app/(auth)/register/page.tsx  Sign up + auto-create profiles row          │
+  │  app/(dashboard)/layout.tsx    Dashboard shell — sidebar + bottom nav      │
+  │  app/(dashboard)/dashboard/    Stats cards + busy hours chart + today list │
+  │  app/(dashboard)/calendar/     Day view & week view with time slots        │
+  │  app/(dashboard)/reservations/ List with filter (date/status/search)       │
+  │  app/(dashboard)/reservations/ New reservation form (pre-fill from calendar│
+  │    new/page.tsx                click via ?date=&time= query params)        │
+  │  app/(dashboard)/settings/     Shop info, open/close hours, plan display   │
+  │  app/api/reservations/export/  CSV export (Pro/Trial only), UTF-8 BOM      │
+  │    route.ts                                                                │
+  └────────────────────────────────────────────────────────────────────────────┘
+
+  ┌─ Components ───────────────────────────────────────────────────────────────┐
+  │  components/dashboard/                                                     │
+  │    SidebarNav.tsx              Desktop sidebar + mobile bottom nav         │
+  │    StatsCard.tsx               Reusable stat card with icon                │
+  │    BusyHoursChart.tsx          Recharts BarChart for peak hours            │
+  │  components/reservations/                                                  │
+  │    StatusBadge.tsx             Color-coded badge (pending/confirmed/etc.)  │
+  │    ReservationForm.tsx         Full CRUD form with quota check             │
+  │    ReservationActions.tsx      Inline status select + edit dialog + delete │
+  │  components/calendar/                                                      │
+  │    DayView.tsx                 30-min time slots, click-to-add             │
+  │    WeekView.tsx                7-column week grid                          │
+  └────────────────────────────────────────────────────────────────────────────┘
+
+Fixes Applied During Build
+  1. TypeScript error in BusyHoursChart.tsx
+     - Error: Recharts Tooltip `formatter` prop type mismatch — explicit `number`
+       annotation on `v` was not assignable to `ValueType | undefined`
+     - Fix: Removed explicit type annotation, let TypeScript infer from context
+     - File: components/dashboard/BusyHoursChart.tsx line 25
+
+  2. Next.js 16 middleware → proxy migration
+     - Warning: "The 'middleware' file convention is deprecated"
+     - Created proxy.ts with `export async function proxy(...)`
+     - Deleted middleware.ts
+     - File: proxy.ts (new), middleware.ts (deleted)
+
+  3. Both middleware.ts and proxy.ts conflict error
+     - Error appeared briefly while dev server was hot-reloading
+     - Resolved automatically once middleware.ts was deleted and server recompiled
+
+Business Logic Implemented
+  - Quota check before insert: Trial (unlimited 30 days) / Free (30/month) / Pro
+  - RLS enforced: all queries use auth.uid() via Supabase policies
+  - Status flow: pending → confirmed → arrived / cancelled / no_show
+  - Calendar click-to-create: passes ?date=&time= to new reservation form
+  - CSV export: UTF-8 BOM for Thai characters in Excel, Pro/Trial gated
+
+Supabase Setup Required (manual — run in SQL Editor)
+  - CREATE TABLE profiles (...)  with RLS policy "own_profile"
+  - CREATE TABLE reservations (...) with RLS policy "owner_access"
+  - CREATE INDEX idx_reservations_owner_date ON reservations(owner_id, reservation_date)
+  - See reserveq-project.md Section 3 for full SQL
+
+================================================================================
+  TODO — Phase 2
+================================================================================
+  [ ] Payment integration (Omise — PromptPay + credit card)
+  [ ] Public booking link (ลูกค้าจองเอง)
+  [ ] LINE Notify / SMS reminder
+  [ ] Walk-in tracking
+  [ ] Multi-staff support
+  [ ] Deploy to Vercel (set env vars: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY)
+
+================================================================================
