@@ -50,16 +50,17 @@ export default function SettingsPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('profiles').update({
+    const { error } = await supabase.from('profiles').upsert({
+      id: user.id,
       shop_name: form.shop_name,
       full_name: form.full_name || null,
       phone: form.phone || null,
       shop_open_time: form.shop_open_time,
       shop_close_time: form.shop_close_time,
-    }).eq('id', user.id)
+    }, { onConflict: 'id' })
 
     setSaving(false)
-    if (error) { setError('บันทึกไม่สำเร็จ'); return }
+    if (error?.message) { console.error('settings save error:', error); setError(`บันทึกไม่สำเร็จ: ${error.message}`); return }
     setSaved(true)
     setTimeout(() => setSaved(false), 3000)
   }

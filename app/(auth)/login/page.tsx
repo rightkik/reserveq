@@ -25,7 +25,11 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      setError('อีเมลหรือรหัสผ่านไม่ถูกต้อง')
+      if (error.message === 'Email not confirmed') {
+        setError('กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ โปรดตรวจสอบกล่องจดหมายของคุณ')
+      } else {
+        setError('อีเมลหรือรหัสผ่านไม่ถูกต้อง')
+      }
       setLoading(false)
       return
     }

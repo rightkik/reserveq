@@ -58,9 +58,25 @@ export function ReservationForm({ defaultDate, defaultTime, reservation, openTim
     setError('')
     setLoading(true)
 
+    if (!isEdit) {
+      const reservationDateTime = new Date(`${form.reservation_date}T${form.reservation_time}`)
+      if (reservationDateTime < new Date()) {
+        setError('ไม่สามารถจองวันและเวลาที่ผ่านมาแล้วได้')
+        setLoading(false)
+        return
+      }
+    }
+
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) { setError('กรุณาเข้าสู่ระบบ'); setLoading(false); return }
+
+    // ensure profile row exists (may be missing if email confirmation was required at signup)
+    const { error: upsertErr } = await supabase.from('profiles').upsert(
+      { id: user.id, shop_name: user.email?.split('@')[0] ?? 'ร้านของฉัน' },
+      { onConflict: 'id', ignoreDuplicates: true }
+    )
+    if (upsertErr) { console.error('profile upsert error:', upsertErr) }
 
     if (!isEdit) {
       const { data: profile } = await supabase.from('profiles').select('plan, trial_ends_at').eq('id', user.id).single()
@@ -100,8 +116,9 @@ export function ReservationForm({ defaultDate, defaultTime, reservation, openTim
       ;({ error: err } = await supabase.from('reservations').insert({ ...payload, owner_id: user.id }))
     }
 
-    if (err) {
-      setError('บันทึกไม่สำเร็จ กรุณาลองใหม่')
+    if (err?.message) {
+      console.error('Supabase error:', err)
+      setError(`บันทึกไม่สำเร็จ: ${err.message}`)
       setLoading(false)
       return
     }
@@ -149,6 +166,7 @@ export function ReservationForm({ defaultDate, defaultTime, reservation, openTim
             type="date"
             value={form.reservation_date}
             onChange={e => set('reservation_date', e.target.value)}
+            min={isEdit ? undefined : new Date().toISOString().split('T')[0]}
             required
           />
         </div>
