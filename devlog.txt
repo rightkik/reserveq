@@ -1,0 +1,64 @@
+================================================================================
+RESERVEQ — DEVELOPMENT LOG
+================================================================================
+
+--------------------------------------------------------------------------------
+2026-05-21 | Session 1 — First Run & Bug Fixes
+--------------------------------------------------------------------------------
+
+ENVIRONMENT SETUP
+- สร้างไฟล์ .env.local (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY)
+- รัน npm install และ npm run dev สำเร็จ
+
+BUG: reservation insert ล้มเหลว
+  Error: insert or update on table "reservations" violates foreign key constraint
+         "reservations_owner_id_fkey"
+  สาเหตุ: ตอน register ถ้า Supabase เปิด email confirmation อยู่ user ยัง
+           unconfirmed จึง insert profiles ไม่ได้ (RLS บล็อก) ทำให้ไม่มี
+           profiles row → reservation insert FK fail
+  แก้: เพิ่ม upsert profiles ก่อน insert reservation ใน ReservationForm.tsx
+       (ใส่ shop_name default = email prefix กรณีไม่มี row)
+
+BUG: settings บันทึกไม่ได้
+  Error: Could not find the 'shop_close_time' column of 'profiles' in the schema cache
+  สาเหตุ: ตอน create table รัน SQL จาก Section 3 ของ reserveq-project.md
+           ซึ่งไม่มี shop_open_time / shop_close_time columns
+  แก้ที่ Supabase SQL Editor:
+    ALTER TABLE profiles ADD COLUMN IF NOT EXISTS shop_open_time TIME DEFAULT '10:00';
+    ALTER TABLE profiles ADD COLUMN IF NOT EXISTS shop_close_time TIME DEFAULT '22:00';
+  แก้ code: เปลี่ยน update → upsert ใน settings/page.tsx เพื่อรองรับกรณีไม่มี row
+
+BUG: error message แสดงแค่ "บันทึกไม่สำเร็จ" ไม่บอกสาเหตุ
+  สาเหตุ: code hardcode ข้อความ ไม่ได้ใช้ err.message จาก Supabase
+  แก้: แสดง err.message จริง + console.error ใน ReservationForm และ settings
+  แก้เพิ่ม: เช็ค error?.message แทน error เพราะ Supabase คืน {} (empty object)
+             ซึ่ง truthy ใน JavaScript ทั้งที่ไม่มี error จริง
+
+FEATURE: Admin Panel (/admin)
+  ไฟล์ใหม่:
+    lib/supabase/admin.ts              — service role client (bypass RLS)
+    app/(admin)/layout.tsx             — auth guard เช็ค ADMIN_EMAIL env var
+    app/(admin)/admin/page.tsx         — server component แสดงทุก accounts
+    app/(admin)/admin/ChangePlanForm.tsx — dropdown เปลี่ยน plan (client)
+    app/(admin)/admin/actions.ts       — server action updatePlan
+  ฟีเจอร์:
+    - summary cards: ร้านทั้งหมด / ทดลอง / ฟรี / Pro
+    - ตาราง: ชื่อร้าน, อีเมล, แผน, วันหมดทดลอง, จำนวนการจอง, วันสมัคร
+    - เปลี่ยน plan ได้จาก dropdown โดยตรง
+  env var ที่ต้องเพิ่มใน .env.local (ไม่ commit):
+    SUPABASE_SERVICE_ROLE_KEY=<service_role key จาก Supabase Settings → API>
+    ADMIN_EMAIL=<อีเมลเจ้าของระบบ>
+
+IMPROVEMENT: login error เมื่อยังไม่ยืนยันอีเมล
+  เดิม: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" (ทุกกรณี)
+  ใหม่: เช็ค error.message === 'Email not confirmed'
+         → "กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ โปรดตรวจสอบกล่องจดหมายของคุณ"
+
+IMPROVEMENT: ป้องกันการจองย้อนหลัง
+  - validate วัน+เวลา < ปัจจุบัน ก่อน submit (เฉพาะสร้างใหม่ ไม่ block แก้ไข)
+  - เพิ่ม min={today} ให้ date input เพื่อ grey วันที่ผ่านมา
+
+COMMITS
+  496cdb1  feat: add admin panel, fix reservation bugs, improve UX
+
+================================================================================
