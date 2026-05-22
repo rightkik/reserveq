@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, CalendarDays, ClipboardList, Settings, LogOut } from 'lucide-react'
+import { LayoutDashboard, CalendarDays, ClipboardList, Settings, LogOut, MessageCircleQuestion } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 import Image from 'next/image'
@@ -12,6 +12,7 @@ const links = [
   { href: '/calendar', label: 'ปฏิทิน', icon: CalendarDays },
   { href: '/reservations', label: 'การจอง', icon: ClipboardList },
   { href: '/settings', label: 'ตั้งค่า', icon: Settings },
+  { href: '/support', label: 'แจ้งปัญหา', icon: MessageCircleQuestion },
 ]
 
 export function SidebarNav({ shopName, logoUrl }: { shopName: string; logoUrl?: string | null }) {

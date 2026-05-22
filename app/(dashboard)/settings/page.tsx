@@ -194,40 +194,6 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base">บัญชีและความปลอดภัย</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-1.5">
-            <Label>อีเมล</Label>
-            <Input value={email} disabled className="bg-zinc-50 text-zinc-500 cursor-not-allowed" />
-            <p className="text-xs text-zinc-400">ไม่สามารถเปลี่ยนอีเมลได้</p>
-          </div>
-
-          <div className="pt-3 border-t space-y-3">
-            <p className="text-sm font-medium text-zinc-700">เปลี่ยนรหัสผ่าน</p>
-            {pwError && <p className="text-sm text-red-600 bg-red-50 p-3 rounded-md">{pwError}</p>}
-            {pwSaved && <p className="text-sm text-green-600 bg-green-50 p-3 rounded-md">เปลี่ยนรหัสผ่านสำเร็จ</p>}
-            <div className="space-y-1.5">
-              <Label>รหัสผ่านปัจจุบัน</Label>
-              <Input type="password" value={pwForm.current} onChange={e => setPwForm(p => ({ ...p, current: e.target.value }))} />
-            </div>
-            <div className="space-y-1.5">
-              <Label>รหัสผ่านใหม่</Label>
-              <Input type="password" value={pwForm.next} onChange={e => setPwForm(p => ({ ...p, next: e.target.value }))} />
-            </div>
-            <div className="space-y-1.5">
-              <Label>ยืนยันรหัสผ่านใหม่</Label>
-              <Input type="password" value={pwForm.confirm} onChange={e => setPwForm(p => ({ ...p, confirm: e.target.value }))} />
-            </div>
-            <Button type="button" variant="outline" size="sm" disabled={pwSaving} onClick={handleChangePassword}>
-              {pwSaving ? 'กำลังบันทึก...' : 'บันทึกรหัสผ่านใหม่'}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
       {profile && (
         <Card>
           <CardHeader className="pb-2">
@@ -286,6 +252,40 @@ export default function SettingsPage() {
           <Button type="submit" disabled={saving}>{saving ? 'กำลังบันทึก...' : 'บันทึก'}</Button>
         </div>
       </form>
+
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">บัญชีและความปลอดภัย</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-1.5">
+            <Label>อีเมล</Label>
+            <Input value={email} disabled className="bg-zinc-50 text-zinc-500 cursor-not-allowed" />
+            <p className="text-xs text-zinc-400">ไม่สามารถเปลี่ยนอีเมลได้</p>
+          </div>
+
+          <div className="pt-3 border-t space-y-3">
+            <p className="text-sm font-medium text-zinc-700">เปลี่ยนรหัสผ่าน</p>
+            {pwError && <p className="text-sm text-red-600 bg-red-50 p-3 rounded-md">{pwError}</p>}
+            {pwSaved && <p className="text-sm text-green-600 bg-green-50 p-3 rounded-md">เปลี่ยนรหัสผ่านสำเร็จ</p>}
+            <div className="space-y-1.5">
+              <Label>รหัสผ่านปัจจุบัน</Label>
+              <Input type="password" value={pwForm.current} onChange={e => setPwForm(p => ({ ...p, current: e.target.value }))} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>รหัสผ่านใหม่</Label>
+              <Input type="password" value={pwForm.next} onChange={e => setPwForm(p => ({ ...p, next: e.target.value }))} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>ยืนยันรหัสผ่านใหม่</Label>
+              <Input type="password" value={pwForm.confirm} onChange={e => setPwForm(p => ({ ...p, confirm: e.target.value }))} />
+            </div>
+            <Button type="button" variant="outline" size="sm" disabled={pwSaving} onClick={handleChangePassword}>
+              {pwSaving ? 'กำลังบันทึก...' : 'บันทึกรหัสผ่านใหม่'}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
