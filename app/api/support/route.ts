@@ -43,7 +43,7 @@ ${detail}
 
   const { error } = await resend.emails.send({
     from: 'ReserveQ <onboarding@resend.dev>',
-    to: 'pressinth@gmail.com',
+    to: 'chino_bc@hotmail.com',
     subject: `[ReserveQ] ${category} — ${subject}`,
     text: body,
   })
