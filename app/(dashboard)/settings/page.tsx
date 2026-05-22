@@ -13,6 +13,7 @@ import Image from 'next/image'
 
 export default function SettingsPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
+  const [email, setEmail] = useState('')
   const [form, setForm] = useState({ shop_name: '', full_name: '', phone: '', shop_open_time: '10:00', shop_close_time: '22:00' })
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -21,12 +22,17 @@ export default function SettingsPage() {
   const [uploading, setUploading] = useState(false)
   const [logoError, setLogoError] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
+  const [pwForm, setPwForm] = useState({ current: '', next: '', confirm: '' })
+  const [pwSaving, setPwSaving] = useState(false)
+  const [pwSaved, setPwSaved] = useState(false)
+  const [pwError, setPwError] = useState('')
 
   useEffect(() => {
     async function load() {
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
+      setEmail(user.email ?? '')
       const { data } = await supabase.from('profiles').select('*').eq('id', user.id).single()
       if (data) {
         setProfile(data as Profile)
@@ -42,6 +48,40 @@ export default function SettingsPage() {
     }
     load()
   }, [])
+
+  async function handleChangePassword() {
+    setPwError('')
+    setPwSaved(false)
+    if (!pwForm.current || !pwForm.next || !pwForm.confirm) {
+      setPwError('กรุณากรอกข้อมูลให้ครบ')
+      return
+    }
+    if (pwForm.next !== pwForm.confirm) {
+      setPwError('รหัสผ่านใหม่ไม่ตรงกัน')
+      return
+    }
+    if (pwForm.next.length < 6) {
+      setPwError('รหัสผ่านใหม่ต้องมีอย่างน้อย 6 ตัวอักษร')
+      return
+    }
+    setPwSaving(true)
+    const supabase = createClient()
+    const { error: signInErr } = await supabase.auth.signInWithPassword({ email, password: pwForm.current })
+    if (signInErr) {
+      setPwError('รหัสผ่านปัจจุบันไม่ถูกต้อง')
+      setPwSaving(false)
+      return
+    }
+    const { error: updateErr } = await supabase.auth.updateUser({ password: pwForm.next })
+    setPwSaving(false)
+    if (updateErr) {
+      setPwError(`ไม่สำเร็จ: ${updateErr.message}`)
+      return
+    }
+    setPwSaved(true)
+    setPwForm({ current: '', next: '', confirm: '' })
+    setTimeout(() => setPwSaved(false), 3000)
+  }
 
   async function handleLogoUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -150,6 +190,40 @@ export default function SettingsPage() {
               </Button>
               <p className="text-xs text-zinc-400">JPG, PNG, WebP ขนาดไม่เกิน 500KB</p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">บัญชีและความปลอดภัย</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-1.5">
+            <Label>อีเมล</Label>
+            <Input value={email} disabled className="bg-zinc-50 text-zinc-500 cursor-not-allowed" />
+            <p className="text-xs text-zinc-400">ไม่สามารถเปลี่ยนอีเมลได้</p>
+          </div>
+
+          <div className="pt-3 border-t space-y-3">
+            <p className="text-sm font-medium text-zinc-700">เปลี่ยนรหัสผ่าน</p>
+            {pwError && <p className="text-sm text-red-600 bg-red-50 p-3 rounded-md">{pwError}</p>}
+            {pwSaved && <p className="text-sm text-green-600 bg-green-50 p-3 rounded-md">เปลี่ยนรหัสผ่านสำเร็จ</p>}
+            <div className="space-y-1.5">
+              <Label>รหัสผ่านปัจจุบัน</Label>
+              <Input type="password" value={pwForm.current} onChange={e => setPwForm(p => ({ ...p, current: e.target.value }))} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>รหัสผ่านใหม่</Label>
+              <Input type="password" value={pwForm.next} onChange={e => setPwForm(p => ({ ...p, next: e.target.value }))} />
+            </div>
+            <div className="space-y-1.5">
+              <Label>ยืนยันรหัสผ่านใหม่</Label>
+              <Input type="password" value={pwForm.confirm} onChange={e => setPwForm(p => ({ ...p, confirm: e.target.value }))} />
+            </div>
+            <Button type="button" variant="outline" size="sm" disabled={pwSaving} onClick={handleChangePassword}>
+              {pwSaving ? 'กำลังบันทึก...' : 'บันทึกรหัสผ่านใหม่'}
+            </Button>
           </div>
         </CardContent>
       </Card>
