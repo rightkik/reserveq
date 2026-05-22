@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { LayoutDashboard, CalendarDays, ClipboardList, Settings, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
+import Image from 'next/image'
 
 const links = [
   { href: '/dashboard', label: 'ภาพรวม', icon: LayoutDashboard },
@@ -13,7 +14,7 @@ const links = [
   { href: '/settings', label: 'ตั้งค่า', icon: Settings },
 ]
 
-export function SidebarNav({ shopName }: { shopName: string }) {
+export function SidebarNav({ shopName, logoUrl }: { shopName: string; logoUrl?: string | null }) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -26,9 +27,18 @@ export function SidebarNav({ shopName }: { shopName: string }) {
 
   return (
     <aside className="hidden md:flex flex-col w-56 bg-white border-r border-zinc-200 min-h-screen">
-      <div className="p-5 border-b border-zinc-200">
+      <div className="p-4 border-b border-zinc-200 space-y-3">
         <p className="text-xs text-zinc-400 font-medium uppercase tracking-wide">ReserveQ</p>
-        <p className="font-semibold text-zinc-800 truncate mt-0.5">{shopName}</p>
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-lg border border-zinc-200 overflow-hidden shrink-0 bg-zinc-50 flex items-center justify-center">
+            {logoUrl ? (
+              <Image src={logoUrl} alt="logo" width={48} height={48} className="object-cover w-full h-full" unoptimized />
+            ) : (
+              <span className="text-[10px] font-medium text-zinc-300 text-center leading-tight px-1">No Logo</span>
+            )}
+          </div>
+          <p className="font-semibold text-zinc-800 truncate text-sm leading-tight">{shopName}</p>
+        </div>
       </div>
       <nav className="flex-1 p-3 space-y-1">
         {links.map(({ href, label, icon: Icon }) => (

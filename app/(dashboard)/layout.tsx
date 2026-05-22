@@ -10,15 +10,16 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('shop_name')
+    .select('shop_name, logo_url')
     .eq('id', user.id)
     .single()
 
   const shopName = profile?.shop_name ?? 'ร้านของฉัน'
+  const logoUrl = profile?.logo_url ?? null
 
   return (
     <div className="flex min-h-screen">
-      <SidebarNav shopName={shopName} />
+      <SidebarNav shopName={shopName} logoUrl={logoUrl} />
       <main className="flex-1 flex flex-col min-w-0 pb-16 md:pb-0">
         {children}
       </main>
