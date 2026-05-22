@@ -32,7 +32,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/calendar') ||
     pathname.startsWith('/reservations') ||
-    pathname.startsWith('/settings')
+    pathname.startsWith('/settings') ||
+    pathname.startsWith('/admin')
 
   if (!user && isDashboardRoute) {
     return NextResponse.redirect(new URL('/login', request.url))

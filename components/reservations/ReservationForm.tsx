@@ -78,26 +78,6 @@ export function ReservationForm({ defaultDate, defaultTime, reservation, openTim
     )
     if (upsertErr) { console.error('profile upsert error:', upsertErr) }
 
-    if (!isEdit) {
-      const { data: profile } = await supabase.from('profiles').select('plan, trial_ends_at').eq('id', user.id).single()
-      if (profile) {
-        const isPro = profile.plan === 'pro'
-        const isTrial = profile.plan === 'trial' && new Date(profile.trial_ends_at) > new Date()
-        if (!isPro && !isTrial) {
-          const now = new Date()
-          const { count } = await supabase.from('reservations')
-            .select('id', { count: 'exact', head: true })
-            .eq('owner_id', user.id)
-            .gte('created_at', new Date(now.getFullYear(), now.getMonth(), 1).toISOString())
-          if ((count ?? 0) >= 30) {
-            setError('คุณใช้โควต้าฟรี 30 รายการ/เดือนครบแล้ว กรุณาอัปเกรดเป็น Pro')
-            setLoading(false)
-            return
-          }
-        }
-      }
-    }
-
     const payload = {
       customer_name: form.customer_name,
       customer_phone: form.customer_phone || null,
@@ -113,7 +93,23 @@ export function ReservationForm({ defaultDate, defaultTime, reservation, openTim
     if (isEdit) {
       ;({ error: err } = await supabase.from('reservations').update({ ...payload, updated_at: new Date().toISOString() }).eq('id', reservation!.id))
     } else {
-      ;({ error: err } = await supabase.from('reservations').insert({ ...payload, owner_id: user.id }))
+      const res = await fetch('/api/reservations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        if (data.error === 'quota_exceeded') {
+          setError('คุณใช้โควต้าฟรี 30 รายการ/เดือนครบแล้ว กรุณาอัปเกรดเป็น Pro')
+        } else {
+          setError(`บันทึกไม่สำเร็จ: ${data.error}`)
+        }
+        setLoading(false)
+        return
+      }
+      if (onSuccess) { onSuccess() } else { router.push('/reservations'); router.refresh() }
+      return
     }
 
     if (err?.message) {

@@ -35,10 +35,14 @@ export async function GET(request: NextRequest) {
   const { data } = await query
   const reservations = (data ?? []) as Reservation[]
 
+  function sanitizeCsv(val: string): string {
+    return /^[=+\-@\t\r]/.test(val) ? `'${val}` : val
+  }
+
   const bom = '﻿'
   const header = 'วันที่,เวลา,ชื่อลูกค้า,เบอร์โทร,จำนวนคน,สถานะ,หมายเหตุ\n'
   const rows = reservations.map(r =>
-    [r.reservation_date, r.reservation_time.slice(0, 5), `"${r.customer_name}"`, r.customer_phone ?? '', r.party_size, statusLabel[r.status], `"${r.note ?? ''}"`].join(',')
+    [r.reservation_date, r.reservation_time.slice(0, 5), `"${sanitizeCsv(r.customer_name)}"`, r.customer_phone ?? '', r.party_size, statusLabel[r.status], `"${sanitizeCsv(r.note ?? '')}"`].join(',')
   ).join('\n')
 
   return new NextResponse(bom + header + rows, {
