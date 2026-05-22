@@ -30,9 +30,10 @@ export function WeekView({ currentDate, reservations }: Props) {
 
           return (
             <div key={dateStr} className="border-r border-zinc-200 last:border-0 min-h-[200px]">
-              <div
+              <button
+                onClick={() => router.push(`/calendar?view=day&date=${dateStr}`)}
                 className={cn(
-                  'py-2 px-2 text-center border-b border-zinc-200',
+                  'w-full py-2 px-2 text-center border-b border-zinc-200 hover:bg-blue-50 transition-colors',
                   isToday ? 'bg-blue-50' : 'bg-zinc-50'
                 )}
               >
@@ -40,7 +41,10 @@ export function WeekView({ currentDate, reservations }: Props) {
                 <p className={cn('text-lg font-semibold', isToday ? 'text-blue-600' : 'text-zinc-800')}>
                   {format(day, 'd')}
                 </p>
-              </div>
+                {dayRes.length > 0 && (
+                  <p className="text-xs text-blue-600 font-medium">{dayRes.length} จอง</p>
+                )}
+              </button>
               <div className="p-1.5 space-y-1">
                 {dayRes.map(r => (
                   <button

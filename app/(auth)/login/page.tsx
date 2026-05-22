@@ -22,7 +22,7 @@ export default function LoginPage() {
     setLoading(true)
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
       if (error.message === 'Email not confirmed') {
@@ -32,6 +32,10 @@ export default function LoginPage() {
       }
       setLoading(false)
       return
+    }
+
+    if (data.user) {
+      await supabase.from('profiles').update({ last_login: new Date().toISOString() }).eq('id', data.user.id)
     }
 
     router.push('/dashboard')

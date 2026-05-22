@@ -16,6 +16,11 @@ function thaiDate(str: string | null) {
   return format(new Date(str), 'd MMM yyyy', { locale: th })
 }
 
+function thaiDateTime(str: string | null) {
+  if (!str) return '-'
+  return format(new Date(str), 'd MMM yyyy HH:mm', { locale: th })
+}
+
 export default async function AdminPage() {
   const admin = createAdminClient()
 
@@ -75,6 +80,7 @@ export default async function AdminPage() {
                   <th className="text-left p-3 font-medium text-zinc-500">หมดทดลอง</th>
                   <th className="text-right p-3 font-medium text-zinc-500">การจอง</th>
                   <th className="text-left p-3 font-medium text-zinc-500">สมัครเมื่อ</th>
+                  <th className="text-left p-3 font-medium text-zinc-500">Login ล่าสุด</th>
                   <th className="text-left p-3 font-medium text-zinc-500">เปลี่ยนแผน</th>
                 </tr>
               </thead>
@@ -93,6 +99,7 @@ export default async function AdminPage() {
                     </td>
                     <td className="p-3 text-right">{countMap.get(p.id) ?? 0}</td>
                     <td className="p-3 text-zinc-500">{thaiDate(p.created_at)}</td>
+                    <td className="p-3 text-zinc-500 text-xs">{thaiDateTime(p.last_login)}</td>
                     <td className="p-3">
                       <ChangePlanForm profileId={p.id} currentPlan={p.plan} />
                     </td>
@@ -100,7 +107,7 @@ export default async function AdminPage() {
                 ))}
                 {profiles.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="p-6 text-center text-zinc-400">ยังไม่มีผู้ใช้</td>
+                    <td colSpan={8} className="p-6 text-center text-zinc-400">ยังไม่มีผู้ใช้</td>
                   </tr>
                 )}
               </tbody>

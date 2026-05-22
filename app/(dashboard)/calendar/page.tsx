@@ -3,9 +3,10 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { DayView } from '@/components/calendar/DayView'
 import { WeekView } from '@/components/calendar/WeekView'
+import { MonthView } from '@/components/calendar/MonthView'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
-import { format, addDays, subDays, addWeeks, subWeeks, startOfWeek, endOfWeek } from 'date-fns'
+import { format, addDays, subDays, addWeeks, subWeeks, addMonths, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from 'date-fns'
 import { th } from 'date-fns/locale'
 import type { Reservation } from '@/types'
 
@@ -25,7 +26,7 @@ export default async function CalendarPage({ searchParams }: Props) {
     .single()
 
   const params = await searchParams
-  const view = params.view === 'week' ? 'week' : 'day'
+  const view = params.view === 'week' ? 'week' : params.view === 'month' ? 'month' : 'day'
   const dateParam = params.date ?? format(new Date(), 'yyyy-MM-dd')
   const currentDate = new Date(dateParam + 'T00:00:00')
 
@@ -35,6 +36,9 @@ export default async function CalendarPage({ searchParams }: Props) {
   if (view === 'week') {
     startDate = format(startOfWeek(currentDate, { weekStartsOn: 1 }), 'yyyy-MM-dd')
     endDate = format(endOfWeek(currentDate, { weekStartsOn: 1 }), 'yyyy-MM-dd')
+  } else if (view === 'month') {
+    startDate = format(startOfMonth(currentDate), 'yyyy-MM-dd')
+    endDate = format(endOfMonth(currentDate), 'yyyy-MM-dd')
   } else {
     startDate = dateParam
     endDate = dateParam
@@ -52,14 +56,21 @@ export default async function CalendarPage({ searchParams }: Props) {
   const openTime = profile?.shop_open_time ?? '10:00'
   const closeTime = profile?.shop_close_time ?? '22:00'
 
-  const prevDate = view === 'week'
+  const prevDate = view === 'month'
+    ? format(startOfMonth(subMonths(currentDate, 1)), 'yyyy-MM-dd')
+    : view === 'week'
     ? format(subWeeks(currentDate, 1), 'yyyy-MM-dd')
     : format(subDays(currentDate, 1), 'yyyy-MM-dd')
-  const nextDate = view === 'week'
+
+  const nextDate = view === 'month'
+    ? format(startOfMonth(addMonths(currentDate, 1)), 'yyyy-MM-dd')
+    : view === 'week'
     ? format(addWeeks(currentDate, 1), 'yyyy-MM-dd')
     : format(addDays(currentDate, 1), 'yyyy-MM-dd')
 
-  const displayTitle = view === 'week'
+  const displayTitle = view === 'month'
+    ? format(currentDate, 'MMMM yyyy', { locale: th })
+    : view === 'week'
     ? `${format(startOfWeek(currentDate, { weekStartsOn: 1 }), 'd MMM', { locale: th })} – ${format(endOfWeek(currentDate, { weekStartsOn: 1 }), 'd MMM yyyy', { locale: th })}`
     : format(currentDate, 'd MMMM yyyy', { locale: th })
 
@@ -86,6 +97,12 @@ export default async function CalendarPage({ searchParams }: Props) {
           >
             รายสัปดาห์
           </Link>
+          <Link
+            href={`/calendar?view=month&date=${dateParam}`}
+            className={`px-3 py-1.5 text-sm font-medium transition-colors ${view === 'month' ? 'bg-blue-600 text-white' : 'text-zinc-600 hover:bg-zinc-50'}`}
+          >
+            รายเดือน
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
@@ -105,8 +122,10 @@ export default async function CalendarPage({ searchParams }: Props) {
 
       {view === 'day' ? (
         <DayView date={dateParam} reservations={reservations} openTime={openTime} closeTime={closeTime} />
-      ) : (
+      ) : view === 'week' ? (
         <WeekView currentDate={currentDate} reservations={reservations} />
+      ) : (
+        <MonthView currentDate={currentDate} reservations={reservations} />
       )}
     </div>
   )

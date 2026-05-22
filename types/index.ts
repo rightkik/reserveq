@@ -11,6 +11,8 @@ export interface Profile {
   trial_ends_at: string
   shop_open_time: string
   shop_close_time: string
+  logo_url: string | null
+  last_login: string | null
   created_at: string
 }
 
