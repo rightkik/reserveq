@@ -153,6 +153,9 @@ Supabase Setup Required (manual — run in SQL Editor)
            - ไม่มี env var = ไม่ inject script (safe ใน dev)
            ไฟล์: app/layout.tsx
 
+  CHORE    Log sync for GA4  [09f2a8d]
+           - อัปเดต devlog.txt + CHANGELOG.txt
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

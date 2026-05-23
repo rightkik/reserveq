@@ -291,4 +291,7 @@ FEATURE: Google Analytics 4 (GA4)
   COMMIT: 7a8793a
   ไฟล์แก้: app/layout.tsx
 
+CHORE: Log sync for GA4 commit  [09f2a8d]
+  - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit 7a8793a
+
 ================================================================================
