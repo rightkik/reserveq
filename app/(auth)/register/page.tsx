@@ -54,7 +54,11 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <Card className="w-full max-w-sm">
+      <div className="w-full max-w-sm space-y-4">
+        <Link href="/" className="flex items-center gap-2 justify-center text-sm text-zinc-400 hover:text-zinc-600 transition-colors">
+          <span>←</span> กลับหน้าแรก
+        </Link>
+      <Card className="w-full">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-blue-600">ReserveQ</CardTitle>
           <CardDescription>สมัครใช้งานฟรี 30 วันแรก</CardDescription>
@@ -68,7 +72,7 @@ export default function RegisterPage() {
               <Label htmlFor="shopName">ชื่อร้าน</Label>
               <Input
                 id="shopName"
-                placeholder="ร้านอาหารของคุณ"
+                placeholder="ร้านของคุณ"
                 value={shopName}
                 onChange={e => setShopName(e.target.value)}
                 required
@@ -111,6 +115,7 @@ export default function RegisterPage() {
           </CardFooter>
         </form>
       </Card>
+      </div>
     </div>
   )
 }

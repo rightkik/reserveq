@@ -115,7 +115,11 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <Card className="w-full max-w-sm">
+      <div className="w-full max-w-sm space-y-4">
+        <Link href="/" className="flex items-center gap-2 justify-center text-sm text-zinc-400 hover:text-zinc-600 transition-colors">
+          <span>←</span> กลับหน้าแรก
+        </Link>
+      <Card className="w-full">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-blue-600">ReserveQ</CardTitle>
           <CardDescription>เข้าสู่ระบบเพื่อจัดการการจอง</CardDescription>
@@ -179,6 +183,7 @@ export default function LoginPage() {
           </CardFooter>
         </form>
       </Card>
+      </div>
     </div>
   )
 }
