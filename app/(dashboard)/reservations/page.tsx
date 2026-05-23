@@ -55,7 +55,7 @@ export default async function ReservationsPage({ searchParams }: Props) {
           reservations.map(r => (
             <Card key={r.id}>
               <CardContent className="p-4">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <p className="font-semibold text-zinc-900">{r.customer_name}</p>
@@ -67,7 +67,9 @@ export default async function ReservationsPage({ searchParams }: Props) {
                     {r.customer_phone && <p className="text-xs text-zinc-400">{r.customer_phone}</p>}
                     {r.note && <p className="text-xs text-zinc-400 mt-1 italic">"{r.note}"</p>}
                   </div>
-                  <ReservationActions reservation={r} />
+                  <div className="shrink-0">
+                    <ReservationActions reservation={r} />
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -80,38 +82,42 @@ export default async function ReservationsPage({ searchParams }: Props) {
 
 function ReservationFilters({ defaultDate, defaultStatus, defaultQ }: { defaultDate?: string; defaultStatus?: string; defaultQ?: string }) {
   return (
-    <form method="GET" className="flex flex-wrap gap-2">
-      <input
-        name="date"
-        type="date"
-        defaultValue={defaultDate}
-        className="h-9 rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <select
-        name="status"
-        defaultValue={defaultStatus ?? ''}
-        className="h-9 rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="">ทุกสถานะ</option>
-        <option value="pending">รอยืนยัน</option>
-        <option value="confirmed">ยืนยันแล้ว</option>
-        <option value="arrived">มาถึงแล้ว</option>
-        <option value="cancelled">ยกเลิก</option>
-        <option value="no_show">ไม่มา</option>
-      </select>
-      <input
-        name="q"
-        type="search"
-        defaultValue={defaultQ}
-        placeholder="ค้นหาชื่อ/เบอร์..."
-        className="h-9 rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-40"
-      />
-      <Button type="submit" variant="outline" size="sm" className="h-9">ค้นหา</Button>
-      {(defaultDate || defaultStatus || defaultQ) && (
-        <Button asChild variant="ghost" size="sm" className="h-9">
-          <Link href="/reservations">ล้างตัวกรอง</Link>
-        </Button>
-      )}
+    <form method="GET" className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+      <div className="flex gap-2">
+        <input
+          name="date"
+          type="date"
+          defaultValue={defaultDate}
+          className="h-9 flex-1 sm:flex-none rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <select
+          name="status"
+          defaultValue={defaultStatus ?? ''}
+          className="h-9 flex-1 sm:flex-none rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="">ทุกสถานะ</option>
+          <option value="pending">รอยืนยัน</option>
+          <option value="confirmed">ยืนยันแล้ว</option>
+          <option value="arrived">มาถึงแล้ว</option>
+          <option value="cancelled">ยกเลิก</option>
+          <option value="no_show">ไม่มา</option>
+        </select>
+      </div>
+      <div className="flex gap-2">
+        <input
+          name="q"
+          type="search"
+          defaultValue={defaultQ}
+          placeholder="ค้นหาชื่อ/เบอร์..."
+          className="h-9 flex-1 rounded-md border border-zinc-200 px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 sm:w-40 sm:flex-none"
+        />
+        <Button type="submit" variant="outline" size="sm" className="h-9 shrink-0">ค้นหา</Button>
+        {(defaultDate || defaultStatus || defaultQ) && (
+          <Button asChild variant="ghost" size="sm" className="h-9 shrink-0">
+            <Link href="/reservations">ล้าง</Link>
+          </Button>
+        )}
+      </div>
     </form>
   )
 }

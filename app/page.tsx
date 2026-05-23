@@ -5,21 +5,41 @@ import type { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import { CalendarDays, ClipboardList, BarChart3, Lock, RefreshCw, FileDown } from 'lucide-react'
 
+const SITE_URL = 'https://izq.vercel.app'
+
 export const metadata: Metadata = {
   title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
   description:
     'ReserveQ ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก สปา และธุรกิจไทยทุกประเภท บันทึกการจองทางโทรศัพท์ ดูปฏิทินรายวัน รายสัปดาห์ ติดตามสถานะลูกค้า ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: 'website',
+    url: SITE_URL,
     locale: 'th_TH',
     siteName: 'ReserveQ',
     title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
     description:
       'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก และธุรกิจไทย ทดลองใช้ฟรี 30 วัน',
+    images: [
+      {
+        url: `${SITE_URL}/screenshots/dashboard.png`,
+        width: 1280,
+        height: 800,
+        alt: 'ReserveQ — ระบบจัดการการจองสำหรับธุรกิจไทย',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
+    description: 'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก และธุรกิจไทย ทดลองใช้ฟรี 30 วัน',
+    images: [`${SITE_URL}/screenshots/dashboard.png`],
   },
   robots: {
     index: true,
-    follow: false,   // ไม่ให้ follow links ออกจาก landing page
+    follow: false,
     googleBot: {
       index: true,
       follow: false,
