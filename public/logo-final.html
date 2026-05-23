@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ReserveQ — Final Direction</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FAFAFA;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 64px 40px;
+  }
+
+  .header { text-align: center; margin-bottom: 8px; }
+  .header h1 { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #A1A1AA; }
+  .header p { font-size: 26px; font-weight: 800; color: #09090B; margin-top: 6px; margin-bottom: 4px; }
+  .header small { font-size: 14px; color: #A1A1AA; }
+
+  /* ─── VARIANT ROW ─── */
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #D4D4D8;
+    text-align: center; margin: 48px 0 20px;
+  }
+
+  .row {
+    display: flex;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto 12px;
+    justify-content: center;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    flex: 1;
+    max-width: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mark-lg { display: block; }
+
+  .scales { display: flex; align-items: center; gap: 10px; }
+
+  .divider { width: 100%; height: 1px; background: #F4F4F5; }
+
+  .wordmark {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 16px; font-weight: 800; letter-spacing: -0.03em; color: #09090B;
+    width: 100%;
+  }
+
+  .tag {
+    font-size: 11px; font-weight: 600; color: #71717A;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  /* ─── WINNER SECTION ─── */
+  .winner-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 28px;
+    padding: 48px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.06);
+  }
+  .winner-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .winner-right h2 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #A1A1AA; margin-bottom: 10px;
+  }
+  .winner-name { font-size: 32px; font-weight: 900; color: #09090B; letter-spacing: -0.03em; margin-bottom: 10px; }
+  .winner-desc { font-size: 14px; color: #71717A; line-height: 1.7; margin-bottom: 20px; }
+
+  .contexts { display: flex; flex-direction: column; gap: 12px; }
+  .ctx-row { display: flex; align-items: center; gap: 12px; }
+  .ctx-label { font-size: 12px; color: #A1A1AA; width: 70px; flex-shrink: 0; }
+  .ctx-items { display: flex; align-items: center; gap: 10px; }
+
+  /* favicon mock */
+  .favicon-bar {
+    background: #E4E4E7; border-radius: 4px;
+    padding: 4px 10px; display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #52525B;
+  }
+
+  /* app icon mock */
+  .phone-row { display: flex; gap: 8px; align-items: flex-end; }
+  .app-label { font-size: 9px; color: #71717A; text-align: center; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ReserveQ · Logo Direction</h1>
+  <p>Q·Check × Dark Confidence</p>
+  <small>hybrid ของ Concept 01 + 03</small>
+</div>
+
+<!-- ─── SECTION 1: Dark bg variants ─── -->
+<p class="section-label">Dark Background Variants</p>
+<div class="row">
+
+  <!-- A: Pure Black -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect width="96" height="96" rx="22" fill="#09090B"/>
+      <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">#09090B · Pure Black</p>
+  </div>
+
+  <!-- B: Dark Navy -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect width="96" height="96" rx="22" fill="#0F172A"/>
+      <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#0F172A"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#0F172A"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#0F172A"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">#0F172A · Dark Navy</p>
+  </div>
+
+  <!-- C: Blue Accent Check -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect width="96" height="96" rx="22" fill="#09090B"/>
+      <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <!-- Blue checkmark accent -->
+      <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">Black + Blue Check Accent</p>
+  </div>
+
+  <!-- D: Green Accent Check -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect width="96" height="96" rx="22" fill="#09090B"/>
+      <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <!-- Green checkmark accent -->
+      <path d="M 36 43 L 42 49 L 54 36" stroke="#34D399" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#34D399" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#34D399" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#34D399" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">Black + Green Check Accent</p>
+  </div>
+
+</div>
+
+<!-- ─── SECTION 2: Light/Mono variants ─── -->
+<p class="section-label">Light & Mono Variants</p>
+<div class="row">
+
+  <!-- E: White bg -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect width="96" height="96" rx="22" fill="white" stroke="#E4E4E7" stroke-width="3"/>
+      <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="white" stroke="#E4E4E7" stroke-width="3"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="white" stroke="#E4E4E7" stroke-width="3"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="white" stroke="#E4E4E7" stroke-width="3"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">White · Light Mode</p>
+  </div>
+
+  <!-- F: No container (standalone mark) -->
+  <div class="card">
+    <div style="width:88px;height:88px;display:flex;align-items:center;justify-content:center;">
+      <svg width="72" height="72" viewBox="0 0 96 96" fill="none">
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">No container · Standalone</p>
+  </div>
+
+  <!-- G: Outline container -->
+  <div class="card">
+    <svg class="mark-lg" width="88" height="88" viewBox="0 0 96 96" fill="none">
+      <rect x="2" y="2" width="92" height="92" rx="21" stroke="#09090B" stroke-width="4" fill="none"/>
+      <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+      <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="scales">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect x="2" y="2" width="92" height="92" rx="21" stroke="#09090B" stroke-width="4" fill="none"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+        <rect x="2" y="2" width="92" height="92" rx="21" stroke="#09090B" stroke-width="4" fill="none"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 96 96" fill="none">
+        <rect x="2" y="2" width="92" height="92" rx="21" stroke="#09090B" stroke-width="4" fill="none"/>
+        <circle cx="44" cy="43" r="20" stroke="#09090B" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="#09090B" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#09090B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      ReserveQ
+    </div>
+    <p class="tag">Outline Container</p>
+  </div>
+
+</div>
+
+<!-- ─── WINNER SHOWCASE ─── -->
+<p class="section-label">Recommended Pick</p>
+<div class="winner-wrap">
+  <div class="winner-grid">
+
+    <!-- Left: big mark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <svg width="120" height="120" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <svg width="40" height="40" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="#09090B"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <svg width="24" height="24" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="#09090B"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="#09090B"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Right: info -->
+    <div class="winner-right">
+      <h2>Recommended</h2>
+      <p class="winner-name">Q·Check Dark<br><span style="color:#A1A1AA;font-size:20px;font-weight:700;">+ Blue Accent</span></p>
+      <p class="winner-desc">Black background ให้ความ confident แบบ Vercel / Linear — checkmark สีน้ำเงินเป็น accent เดียวในภาพ ดึงสายตาไปที่ "ยืนยันแล้ว" โดยไม่ต้องพูด Mark ทำงานได้ตั้งแต่ 16px favicon จนถึง billboard</p>
+
+      <div class="contexts">
+        <div class="ctx-row">
+          <span class="ctx-label">Wordmark</span>
+          <div class="ctx-items">
+            <svg width="20" height="20" viewBox="0 0 96 96" fill="none">
+              <rect width="96" height="96" rx="22" fill="#09090B"/>
+              <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+              <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+              <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span style="font-size:18px;font-weight:800;letter-spacing:-0.03em;color:#09090B;">ReserveQ</span>
+          </div>
+        </div>
+
+        <div class="ctx-row">
+          <span class="ctx-label">On Dark</span>
+          <div class="ctx-items" style="background:#09090B;padding:8px 14px;border-radius:10px;">
+            <svg width="18" height="18" viewBox="0 0 96 96" fill="none">
+              <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+              <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+              <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span style="font-size:16px;font-weight:800;letter-spacing:-0.03em;color:white;">ReserveQ</span>
+          </div>
+        </div>
+
+        <div class="ctx-row">
+          <span class="ctx-label">Favicon</span>
+          <div class="ctx-items">
+            <div class="favicon-bar">
+              <svg width="14" height="14" viewBox="0 0 96 96" fill="none">
+                <rect width="96" height="96" rx="22" fill="#09090B"/>
+                <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+                <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+                <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              reserveq.app
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -241,4 +241,30 @@ FEATURE: Brand Logo Mark
   ไฟล์ใหม่: public/logo.svg, app/icon.svg
   ไฟล์แก้: app/page.tsx, components/dashboard/SidebarNav.tsx
 
+FIX: Login / Register UX
+  - เพิ่มลิงก์ "← กลับหน้าแรก" เหนือ card ทั้งสองหน้า
+    เผื่อ user เปลี่ยนใจอยากกลับมาอ่าน landing page
+  - แก้ placeholder ช่องชื่อร้านใน register
+    จาก "ร้านอาหารของคุณ" → "ร้านของคุณ" (ครอบคลุมทุกธุรกิจ ไม่ใช่แค่ร้านอาหาร)
+  COMMIT: f9f2861
+  ไฟล์แก้: app/(auth)/login/page.tsx, app/(auth)/register/page.tsx
+
+FIX: SEO — og:image, Canonical URL, Twitter card
+  - เพิ่ม og:image: https://izq.vercel.app/screenshots/dashboard.png (1280x800)
+    แชร์ใน LINE/Facebook/Twitter จะมี preview รูป dashboard จริง
+  - เพิ่ม canonical: https://izq.vercel.app (production URL)
+  - เพิ่ม og:url: https://izq.vercel.app
+  - เปลี่ยน twitter:card จาก summary → summary_large_image
+  - เพิ่ม twitter:image pointing to dashboard screenshot
+  ไฟล์แก้: app/page.tsx
+
+FIX: Reservations Mobile Layout
+  - Card: เปลี่ยน flex-row → flex-col on mobile (sm:flex-row on desktop)
+    ทำให้ข้อมูลลูกค้า + status/actions อยู่คนละแถว อ่านง่ายขึ้นมาก
+  - Filter row: แยก 2 แถวบน mobile
+    แถว 1: date input + status dropdown (flex-1 each)
+    แถว 2: search input (flex-1) + ค้นหา button + ล้าง button
+  COMMIT: ecfcceb
+  ไฟล์แก้: app/page.tsx, app/(dashboard)/reservations/page.tsx
+
 ================================================================================

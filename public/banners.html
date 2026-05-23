@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ReserveQ — Banner Designs</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #E5E7EB;
+    font-family: 'Noto Sans Thai', sans-serif;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .section { width: 100%; max-width: 1200px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #9CA3AF;
+    margin-bottom: 12px; text-align: center;
+  }
+  .caption {
+    font-size: 12px; color: #9CA3AF; text-align: center;
+    margin-top: 10px; letter-spacing: 0.03em;
+  }
+
+  /* ══════════════════════════════════════════
+     BANNER A — Dark Pulse (1200×300)
+  ══════════════════════════════════════════ */
+  .banner-a {
+    width: 1200px;
+    height: 300px;
+    background: #07091A;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .banner-a .glow-1 {
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,.18) 0%, transparent 65%);
+    top: -180px; left: -60px; pointer-events: none;
+  }
+  .banner-a .glow-2 {
+    position: absolute; width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(96,165,250,.10) 0%, transparent 60%);
+    bottom: -120px; left: 380px; pointer-events: none;
+  }
+  .banner-a .glow-3 {
+    position: absolute; width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(139,92,246,.08) 0%, transparent 60%);
+    top: -60px; right: 320px; pointer-events: none;
+  }
+  /* grid lines overlay */
+  .banner-a::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .banner-a .left {
+    position: relative; z-index: 2;
+    padding: 0 52px 0 56px;
+    flex: 0 0 600px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .banner-a .brand {
+    display: flex; align-items: center; gap: 9px;
+  }
+  .banner-a .brand svg { border-radius: 8px; flex-shrink: 0; }
+  .banner-a .brand span {
+    font-size: 14px; font-weight: 800; color: rgba(255,255,255,.55);
+    letter-spacing: 0.02em;
+  }
+  .banner-a h1 {
+    font-size: 48px; font-weight: 900; color: #fff;
+    line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .banner-a h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #60A5FA, #818CF8);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .banner-a .sub {
+    font-size: 14px; color: rgba(255,255,255,.45); font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .banner-a .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: #07091A;
+    font-size: 15px; font-weight: 800;
+    padding: 12px 24px; border-radius: 100px;
+    width: fit-content;
+    letter-spacing: -0.01em;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 8px 24px rgba(0,0,0,.4);
+  }
+  .banner-a .cta .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #60A5FA;
+  }
+
+  .banner-a .right {
+    position: relative; z-index: 2;
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding-right: 40px;
+  }
+
+  /* App UI mockup card */
+  .app-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 18px 20px;
+    width: 280px;
+    transform: perspective(800px) rotateY(-8deg) rotateX(3deg);
+    box-shadow: 24px 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(96,165,250,.08);
+  }
+  .app-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .app-card-header .title {
+    font-size: 11px; font-weight: 700; color: rgba(255,255,255,.5);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .app-card-header .badge {
+    font-size: 10px; font-weight: 700; color: #60A5FA;
+    background: rgba(96,165,250,.15); border-radius: 100px;
+    padding: 2px 8px;
+  }
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-bottom: 16px;
+  }
+  .stat-box {
+    background: rgba(255,255,255,.05); border-radius: 10px;
+    padding: 10px 8px; text-align: center;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .stat-box .n {
+    font-size: 22px; font-weight: 900; color: white; display: block;
+    line-height: 1;
+  }
+  .stat-box .l {
+    font-size: 9px; color: rgba(255,255,255,.35); font-weight: 600;
+    margin-top: 3px; display: block; letter-spacing: 0.04em;
+  }
+  .stat-box.accent .n { color: #60A5FA; }
+  .chart-label {
+    font-size: 10px; color: rgba(255,255,255,.3); margin-bottom: 6px;
+    font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .chart-bars {
+    display: flex; align-items: flex-end; gap: 4px; height: 40px;
+  }
+  .bar {
+    flex: 1; background: rgba(96,165,250,.25); border-radius: 3px 3px 0 0;
+    min-height: 6px;
+  }
+  .bar.peak { background: #60A5FA; }
+  .reservation-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255,255,255,.06);
+    margin-top: 12px;
+  }
+  .res-name { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.7); }
+  .res-time { font-size: 10px; color: rgba(255,255,255,.3); margin-top: 2px; }
+  .res-badge {
+    font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 100px;
+    background: rgba(52,211,153,.15); color: #34D399;
+  }
+
+  /* ══════════════════════════════════════════
+     BANNER B — Split Bold (1200×280)
+  ══════════════════════════════════════════ */
+  .banner-b {
+    width: 1200px; height: 280px;
+    border-radius: 20px; overflow: hidden;
+    display: flex; cursor: pointer;
+    box-shadow: 0 4px 40px rgba(0,0,0,.15);
+  }
+  .banner-b .b-left {
+    flex: 0 0 580px;
+    background: #09090B;
+    display: flex; flex-direction: column;
+    justify-content: center; padding: 0 52px;
+    position: relative; overflow: hidden;
+  }
+  .banner-b .b-left::after {
+    content: '';
+    position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+    width: 80px; height: 140%; background: white;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+    z-index: 2;
+  }
+  .banner-b .b-left .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #60A5FA;
+    margin-bottom: 12px;
+  }
+  .banner-b .b-left h1 {
+    font-size: 46px; font-weight: 900; color: white;
+    line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .banner-b .b-left .sub {
+    font-size: 13px; color: rgba(255,255,255,.4);
+    margin-top: 10px; line-height: 1.5;
+  }
+  .banner-b .b-right {
+    flex: 1; background: white;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 0 52px 0 64px;
+  }
+  .banner-b .features {
+    display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;
+  }
+  .banner-b .feature {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: #18181B;
+  }
+  .banner-b .feature .check {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #09090B; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .banner-b .feature .check svg { display: block; }
+  .banner-b .cta-b {
+    background: #09090B; color: white;
+    font-size: 15px; font-weight: 800;
+    padding: 12px 28px; border-radius: 100px;
+    display: inline-flex; align-items: center; gap-8: px;
+    letter-spacing: -0.01em;
+  }
+  .banner-b .free-tag {
+    font-size: 11px; color: #71717A; margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════════════════════
+     BANNER C — Gradient Hero (1200×280)
+  ══════════════════════════════════════════ */
+  .banner-c {
+    width: 1200px; height: 280px;
+    background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 40%, #2563EB 70%, #3B82F6 100%);
+    border-radius: 20px; overflow: hidden;
+    display: flex; align-items: center;
+    position: relative; cursor: pointer;
+  }
+  .banner-c::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .banner-c .c-glow {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 60%);
+    right: -100px; top: -200px; pointer-events: none;
+  }
+  .banner-c .c-left {
+    position: relative; z-index: 2;
+    padding: 0 60px;
+    flex: 0 0 560px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .banner-c .brand-c {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .banner-c .brand-c span {
+    font-size: 13px; font-weight: 700; color: rgba(255,255,255,.6);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .banner-c h1 {
+    font-size: 44px; font-weight: 900; color: white;
+    line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .banner-c .sub-c {
+    font-size: 14px; color: rgba(255,255,255,.65); font-weight: 500;
+  }
+  .banner-c .cta-c {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: #1D4ED8;
+    font-size: 15px; font-weight: 800;
+    padding: 12px 26px; border-radius: 100px;
+    width: fit-content; letter-spacing: -0.01em;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  }
+  .banner-c .c-right {
+    position: relative; z-index: 2; flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding-right: 48px;
+  }
+  .floating-cards {
+    position: relative; width: 320px; height: 220px;
+  }
+  .fc {
+    position: absolute;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  }
+  .fc-1 {
+    width: 220px; top: 0; left: 0;
+    transform: rotate(-3deg);
+  }
+  .fc-2 {
+    width: 200px; bottom: 0; right: 0;
+    transform: rotate(2deg);
+  }
+  .fc .fc-title { font-size: 10px; color: rgba(255,255,255,.5); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .fc .fc-name { font-size: 14px; color: white; font-weight: 800; margin-bottom: 3px; }
+  .fc .fc-detail { font-size: 11px; color: rgba(255,255,255,.5); }
+  .fc .fc-status {
+    display: inline-block; margin-top: 8px;
+    font-size: 10px; font-weight: 700; padding: 3px 8px;
+    border-radius: 100px; background: rgba(52,211,153,.2); color: #6EE7B7;
+  }
+  .fc .fc-time { font-size: 22px; font-weight: 900; color: white; }
+  .fc .fc-sub { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+  /* ══════════════════════════════════════════
+     LEADERBOARD 728×90
+  ══════════════════════════════════════════ */
+  .banner-lb {
+    width: 728px; height: 90px;
+    background: #07091A;
+    border-radius: 12px; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 0 28px; gap: 0;
+    position: relative; cursor: pointer;
+  }
+  .banner-lb::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(37,99,235,.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .banner-lb .lb-brand {
+    display: flex; align-items: center; gap: 10px;
+    flex-shrink: 0; z-index: 1;
+  }
+  .banner-lb .lb-brand span {
+    font-size: 18px; font-weight: 900; color: white; letter-spacing: -0.02em;
+  }
+  .banner-lb .lb-divider {
+    width: 1px; height: 36px; background: rgba(255,255,255,.12);
+    margin: 0 28px; flex-shrink: 0; z-index: 1;
+  }
+  .banner-lb .lb-text { z-index: 1; flex: 1; }
+  .banner-lb .lb-text h2 {
+    font-size: 16px; font-weight: 900; color: white;
+    letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
+  }
+  .banner-lb .lb-text p {
+    font-size: 11px; color: rgba(255,255,255,.4);
+    margin-top: 2px; font-weight: 500;
+  }
+  .banner-lb .lb-cta {
+    z-index: 1; flex-shrink: 0;
+    background: white; color: #07091A;
+    font-size: 13px; font-weight: 800;
+    padding: 10px 22px; border-radius: 100px;
+    white-space: nowrap; letter-spacing: -0.01em;
+  }
+  .banner-lb .lb-check {
+    width: 7px; height: 7px; border-radius: 50%; background: #60A5FA;
+    display: inline-block; margin-right: 6px;
+  }
+
+  /* ══════════════════════════════════════════
+     MOBILE BANNER 320×50
+  ══════════════════════════════════════════ */
+  .banner-mb {
+    width: 320px; height: 50px;
+    background: #07091A;
+    border-radius: 10px; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 0;
+    position: relative; cursor: pointer;
+  }
+  .banner-mb::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(37,99,235,.15) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .banner-mb .mb-brand {
+    display: flex; align-items: center; gap: 7px;
+    flex-shrink: 0; z-index: 1;
+  }
+  .banner-mb .mb-brand span {
+    font-size: 13px; font-weight: 900; color: white;
+    letter-spacing: -0.02em; white-space: nowrap;
+  }
+  .banner-mb .mb-div {
+    width: 1px; height: 22px; background: rgba(255,255,255,.12);
+    margin: 0 12px; flex-shrink: 0; z-index: 1;
+  }
+  .banner-mb .mb-text {
+    flex: 1; z-index: 1; min-width: 0;
+  }
+  .banner-mb .mb-text h2 {
+    font-size: 11px; font-weight: 800; color: white;
+    letter-spacing: -0.01em; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .banner-mb .mb-text p {
+    font-size: 9px; color: rgba(255,255,255,.38);
+    margin-top: 1px; white-space: nowrap; font-weight: 500;
+  }
+  .banner-mb .mb-cta {
+    z-index: 1; flex-shrink: 0; margin-left: 10px;
+    background: white; color: #07091A;
+    font-size: 11px; font-weight: 800;
+    padding: 6px 13px; border-radius: 100px;
+    white-space: nowrap; letter-spacing: -0.01em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ BANNER A: DARK PULSE ══ -->
+<div class="section">
+  <p class="section-label">Direction A — Dark Pulse · 1200 × 300</p>
+  <div class="banner-a">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+
+    <div class="left">
+      <div class="brand">
+        <svg width="30" height="30" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="#09090B"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>ReserveQ</span>
+      </div>
+      <h1>เลิกจด.<br><em>เริ่มจอง.</em></h1>
+      <p class="sub">ระบบจัดการการจองสำหรับธุรกิจไทย · ไม่ต้องใช้บัตรเครดิต</p>
+      <div class="cta">
+        <div class="dot"></div>
+        ทดลองใช้ฟรี 30 วัน
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="app-card">
+        <div class="app-card-header">
+          <span class="title">ภาพรวมวันนี้</span>
+          <span class="badge">Live</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <span class="n">12</span>
+            <span class="l">การจอง</span>
+          </div>
+          <div class="stat-box">
+            <span class="n">38</span>
+            <span class="l">คน</span>
+          </div>
+          <div class="stat-box accent">
+            <span class="n">5</span>
+            <span class="l">รอยืนยัน</span>
+          </div>
+        </div>
+        <div class="chart-label">ช่วงเวลา Busy</div>
+        <div class="chart-bars">
+          <div class="bar" style="height:30%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar peak" style="height:100%"></div>
+          <div class="bar peak" style="height:85%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:20%"></div>
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:25%"></div>
+        </div>
+        <div class="reservation-row">
+          <div>
+            <div class="res-name">สมชาย ใจดี</div>
+            <div class="res-time">13:30 · 4 คน</div>
+          </div>
+          <div class="res-badge">ยืนยันแล้ว</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption">Dark background · glow orbs · app UI preview · CTA button</p>
+</div>
+
+<!-- ══ BANNER B: SPLIT BOLD ══ -->
+<div class="section">
+  <p class="section-label">Direction B — Split Bold · 1200 × 280</p>
+  <div class="banner-b">
+    <div class="b-left">
+      <p class="tag">ทดลองใช้ฟรี 30 วัน</p>
+      <h1>จัดการทุก<br>การจอง.</h1>
+      <p class="sub">บันทึก · ติดตาม · ดูปฏิทิน<br>สำหรับธุรกิจไทยทุกประเภท</p>
+    </div>
+    <div class="b-right">
+      <div class="features">
+        <div class="feature">
+          <div class="check">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5L4 7L8 3" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          ปฏิทินรายวัน รายสัปดาห์ รายเดือน
+        </div>
+        <div class="feature">
+          <div class="check">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5L4 7L8 3" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          บันทึกการจองทางโทรศัพท์ใน 10 วินาที
+        </div>
+        <div class="feature">
+          <div class="check">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5L4 7L8 3" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          ติดตามสถานะลูกค้าแบบ real-time
+        </div>
+      </div>
+      <div class="cta-b">เริ่มใช้งานฟรีเลย →</div>
+      <p class="free-tag">ไม่ต้องใช้บัตรเครดิต · ยกเลิกได้ทุกเมื่อ</p>
+    </div>
+  </div>
+  <p class="caption">Split black/white · bold headline · feature list · clean CTA</p>
+</div>
+
+<!-- ══ BANNER C: GRADIENT HERO ══ -->
+<div class="section">
+  <p class="section-label">Direction C — Gradient Hero · 1200 × 280</p>
+  <div class="banner-c">
+    <div class="c-glow"></div>
+    <div class="c-left">
+      <div class="brand-c">
+        <svg width="26" height="26" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="rgba(255,255,255,0.15)"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>ReserveQ</span>
+      </div>
+      <h1>ไม่ต้องจด<br>ไม่ต้องจำ</h1>
+      <p class="sub-c">ระบบจัดการการจองออนไลน์ สำหรับร้านอาหาร ร้านนวด คลินิก สปา และทุกธุรกิจที่รับจองในไทย</p>
+      <div class="cta-c">
+        <svg width="16" height="16" viewBox="0 0 96 96" fill="none">
+          <rect width="96" height="96" rx="22" fill="#1D4ED8"/>
+          <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+          <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 36 43 L 42 49 L 54 36" stroke="#93C5FD" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        เริ่มใช้งานฟรี 30 วัน
+      </div>
+    </div>
+
+    <div class="c-right">
+      <div class="floating-cards">
+        <div class="fc fc-1">
+          <div class="fc-title">การจองใหม่</div>
+          <div class="fc-name">นิดา วงษ์ทอง</div>
+          <div class="fc-detail">พรุ่งนี้ 12:00 · 4 คน</div>
+          <div class="fc-status">รอยืนยัน</div>
+        </div>
+        <div class="fc fc-2">
+          <div class="fc-title">Busy สุดสัปดาห์นี้</div>
+          <div class="fc-time">11:30</div>
+          <div class="fc-sub">4 การจอง · 14 คน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption">Blue gradient · floating UI cards · warm Thai copy</p>
+</div>
+
+<!-- ══ LEADERBOARD 728×90 ══ -->
+<div class="section" style="display:flex;flex-direction:column;align-items:center;">
+  <p class="section-label">Leaderboard · 728 × 90 (Header Banner)</p>
+  <div class="banner-lb">
+    <div class="lb-brand">
+      <svg width="36" height="36" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span>ReserveQ</span>
+    </div>
+    <div class="lb-divider"></div>
+    <div class="lb-text">
+      <h2>เลิกจด เริ่มจอง — จัดการทุกการจองในที่เดียว</h2>
+      <p><span class="lb-check"></span>ทดลองใช้ฟรี 30 วัน · ไม่ต้องใช้บัตรเครดิต</p>
+    </div>
+    <div class="lb-divider"></div>
+    <div class="lb-cta">เริ่มฟรี →</div>
+  </div>
+  <p class="caption">Dark · compact · logo + headline + CTA ในบรรทัดเดียว</p>
+</div>
+
+<!-- ══ MOBILE 320×50 ══ -->
+<div class="section" style="display:flex;flex-direction:column;align-items:center;">
+  <p class="section-label">Mobile Banner · 320 × 50</p>
+  <div class="banner-mb">
+    <div class="mb-brand">
+      <svg width="24" height="24" viewBox="0 0 96 96" fill="none">
+        <rect width="96" height="96" rx="22" fill="#09090B"/>
+        <circle cx="44" cy="43" r="20" stroke="white" stroke-width="10" fill="none"/>
+        <line x1="58" y1="57" x2="74" y2="73" stroke="white" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 36 43 L 42 49 L 54 36" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span>ReserveQ</span>
+    </div>
+    <div class="mb-div"></div>
+    <div class="mb-text">
+      <h2>เลิกจด เริ่มจอง</h2>
+      <p>ฟรี 30 วัน · ไม่ใช้บัตรเครดิต</p>
+    </div>
+    <div class="mb-cta">ฟรี →</div>
+  </div>
+  <p class="caption">320 × 50 · mobile-optimized · ข้อความกระชับ</p>
+</div>
+
+</body>
+</html>

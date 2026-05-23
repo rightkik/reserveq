@@ -120,6 +120,22 @@ Supabase Setup Required (manual — run in SQL Editor)
            ไฟล์: public/logo.svg (ใหม่), app/icon.svg (ใหม่),
                   app/page.tsx, components/dashboard/SidebarNav.tsx
 
+  FIX      Login/Register UX — back link + inclusive placeholder
+           - เพิ่ม "← กลับหน้าแรก" link เหนือ card ใน /login และ /register
+           - placeholder ชื่อร้าน: "ร้านอาหารของคุณ" → "ร้านของคุณ"
+           ไฟล์: app/(auth)/login/page.tsx, app/(auth)/register/page.tsx
+
+  FIX      SEO — og:image + canonical + twitter:card upgrade
+           - og:image: https://izq.vercel.app/screenshots/dashboard.png (1280×800)
+           - canonical: https://izq.vercel.app
+           - twitter:card: summary → summary_large_image
+           ไฟล์: app/page.tsx
+
+  FIX      Reservations mobile layout
+           - Card: flex-col on mobile → content + actions แยกแถว อ่านง่ายขึ้น
+           - Filter: 2-row layout on mobile (date+status / search+button)
+           ไฟล์: app/(dashboard)/reservations/page.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================
