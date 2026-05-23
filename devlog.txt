@@ -267,4 +267,19 @@ FIX: Reservations Mobile Layout
   COMMIT: ecfcceb
   ไฟล์แก้: app/page.tsx, app/(dashboard)/reservations/page.tsx
 
+CHORE: Brand assets, screenshots, changelog/devlog sync
+  - เพิ่มไฟล์ brand design reference:
+    • public/logo-concepts.html — สรุป concept ทั้งหมดที่ออกแบบไว้
+    • public/logo-final.html — final logo spec + usage guide
+    • public/banners.html — banner variants (leaderboard 728×90 + mobile 320×50)
+  - เพิ่ม screenshots ครบทุกหน้าทั้ง desktop และ mobile:
+    landing-header, login-preview, register-preview, dashboard-sidebar,
+    banner-leaderboard, banner-mobile
+    mobile/: landing, login, register, dashboard, calendar, reservations,
+             reservations-fixed, settings
+  - อัปเดต CHANGELOG.txt และ devlog.txt ให้ครอบคลุม fixes ล่าสุด
+  COMMIT: b38dfa8
+  ไฟล์ใหม่: public/banners.html, public/logo-concepts.html, public/logo-final.html,
+             public/screenshots/* (17 ไฟล์)
+
 ================================================================================

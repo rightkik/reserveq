@@ -136,6 +136,17 @@ Supabase Setup Required (manual — run in SQL Editor)
            - Filter: 2-row layout on mobile (date+status / search+button)
            ไฟล์: app/(dashboard)/reservations/page.tsx
 
+  CHORE    Brand assets + screenshots + log sync  [b38dfa8]
+           - logo-concepts.html, logo-final.html — brand design reference
+           - banners.html — leaderboard (728×90) + mobile (320×50) banners
+           - screenshots/: landing-header, login-preview, register-preview,
+             dashboard-sidebar, banner-leaderboard, banner-mobile
+           - screenshots/mobile/: landing, login, register, dashboard,
+             calendar, reservations, reservations-fixed, settings
+           - อัปเดต CHANGELOG.txt + devlog.txt ให้ครบ
+           ไฟล์: public/banners.html (ใหม่), public/logo-concepts.html (ใหม่),
+                  public/logo-final.html (ใหม่), public/screenshots/* (17 ไฟล์ใหม่)
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
@@ -28,10 +29,25 @@ export const metadata: Metadata = {
   },
 }
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th" className={geist.variable}>
-      <body className="min-h-screen bg-zinc-50 font-sans antialiased">{children}</body>
+      <body className="min-h-screen bg-zinc-50 font-sans antialiased">
+        {children}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
+      </body>
     </html>
   )
 }
