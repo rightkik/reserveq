@@ -282,4 +282,13 @@ CHORE: Brand assets, screenshots, changelog/devlog sync
   ไฟล์ใหม่: public/banners.html, public/logo-concepts.html, public/logo-final.html,
              public/screenshots/* (17 ไฟล์)
 
+FEATURE: Google Analytics 4 (GA4)
+  - เพิ่ม GA4 ผ่าน next/script strategy="afterInteractive"
+    ไม่บล็อก page load, โหลดหลัง hydration
+  - GA_ID อ่านจาก NEXT_PUBLIC_GA_MEASUREMENT_ID env var
+    ถ้าไม่มีค่าจะไม่ inject script (ปลอดภัยใน local dev)
+  - Measurement ID: G-261PERESG2 (izq.vercel.app)
+  COMMIT: 7a8793a
+  ไฟล์แก้: app/layout.tsx
+
 ================================================================================

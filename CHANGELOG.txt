@@ -147,6 +147,12 @@ Supabase Setup Required (manual — run in SQL Editor)
            ไฟล์: public/banners.html (ใหม่), public/logo-concepts.html (ใหม่),
                   public/logo-final.html (ใหม่), public/screenshots/* (17 ไฟล์ใหม่)
 
+  FEATURE  Google Analytics 4 (GA4)  [7a8793a]
+           - next/script strategy="afterInteractive" — ไม่บล็อก page load
+           - อ่าน Measurement ID จาก NEXT_PUBLIC_GA_MEASUREMENT_ID env var
+           - ไม่มี env var = ไม่ inject script (safe ใน dev)
+           ไฟล์: app/layout.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================
