@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev scripts (may contain credentials)
+/scripts
+
+# unused/temp screenshots
+/public/screenshots/landing-preview.png
+/public/screenshots/calendar.png
+/public/screenshots/new-reservation.png

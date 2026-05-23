@@ -192,4 +192,40 @@ IMPROVEMENT: เพิ่ม Support ใน Sidebar nav
   - เพิ่มลิงก์ไปหน้า /support ใน SidebarNav
   ไฟล์: components/dashboard/SidebarNav.tsx
 
+--------------------------------------------------------------------------------
+2026-05-23 | Session 6 — Landing Page Screenshots Section
+--------------------------------------------------------------------------------
+
+FEATURE: Screenshot showcase บน Landing Page
+  - จับ screenshot จริงจากระบบด้วย Playwright (chromium headless)
+  - ใช้ DOM injection ก่อน screenshot เพื่อแทนที่ข้อมูล test ด้วยข้อมูล demo
+    ที่ดูสมจริง (ชื่อลูกค้าภาษาไทย, เบอร์โทร, หมายเหตุ) และชื่อร้าน "ร้านอาหาร IZQ"
+  - Screenshots ที่ได้ (บันทึกใน public/screenshots/):
+      dashboard.png       — Stats cards + busy hours bar chart
+      calendar-week.png   — Week calendar พร้อมการจองจริง
+      reservations.png    — รายการจองพร้อม status badges และ notes
+
+FEATURE: Section "ดูก่อน ตัดสินใจทีหลัง" ใน Landing Page
+  - วาง section หลัง Hero ก่อน Business Types
+  - Layout: Dashboard screenshot ใหญ่บนสุด (max-w-3xl กึ่งกลาง)
+             Calendar + Reservations สองช่องเท่ากันด้านล่าง
+  - BrowserFrame component — แสดง dots 3 อัน + URL bar ให้ดูเหมือน browser จริง
+  - ใช้ next/image สำหรับ optimized loading
+  ไฟล์แก้: app/page.tsx
+  ไฟล์ใหม่: public/screenshots/ (dashboard.png, calendar-week.png, reservations.png)
+  Script: scripts/take-screenshots.mjs (Playwright — dev tool เท่านั้น)
+  Package เพิ่ม (devDependency): playwright
+
+FEATURE: SEO Improvements
+  - robots.ts (Next.js built-in) — allow เฉพาะ Googlebot + Bingbot บน / เท่านั้น
+    block ทุก bot อื่น (AI scrapers, SEO tools, DuckDuckBot, Slurp ฯลฯ)
+    ใช้ Allow: /$ + Disallow: / สำหรับ good bots ($ anchor = exact match root)
+  - layout.tsx — เพิ่ม metadata: OG tags (og:title, og:description, og:locale th_TH,
+    og:type, og:site_name), Twitter card (summary), robots default index:false
+  - page.tsx (landing) — override metadata: index:true, nofollow
+    description ยาวพร้อม Thai keywords ครบ
+    JSON-LD SoftwareApplication schema (name, offers Free/Pro, featureList)
+  ไฟล์ใหม่: app/robots.ts
+  ไฟล์แก้: app/layout.tsx, app/page.tsx
+
 ================================================================================

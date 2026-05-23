@@ -92,6 +92,28 @@ Supabase Setup Required (manual — run in SQL Editor)
   - See reserveq-project.md Section 3 for full SQL
 
 ================================================================================
+  [2026-05-23]  Session 6 — Landing Page Screenshots Section
+================================================================================
+
+  FEATURE  Landing page screenshots section ("ดูก่อน ตัดสินใจทีหลัง")
+           - Section ใหม่หลัง Hero แสดง 3 screenshots จากระบบจริง
+           - Dashboard (ใหญ่), Calendar week view + Reservations list (คู่)
+           - BrowserFrame component — browser chrome effect (dots + URL bar)
+           - Screenshots ถ่ายด้วย Playwright, ข้อมูล demo inject ผ่าน JS
+           ไฟล์: app/page.tsx, public/screenshots/*.png
+
+  TOOL     scripts/take-screenshots.mjs — Playwright script สำหรับจับ screenshot
+           (dev tool, ไม่ได้ใช้ใน production)
+
+  FEATURE  SEO — robots, metadata, JSON-LD
+           - app/robots.ts: allow Googlebot + Bingbot บน / เท่านั้น, block ทุก bot อื่น
+           - layout.tsx: OG tags (title, description, locale th_TH, type, site_name)
+             + Twitter card summary + robots default index:false
+           - page.tsx: override robots index:true nofollow, description พร้อม keywords
+             JSON-LD SoftwareApplication (offers Free ฿0 / Pro ฿299, featureList)
+           ไฟล์: app/robots.ts (ใหม่), app/layout.tsx, app/page.tsx
+
+================================================================================
   TODO — Phase 2
 ================================================================================
   [ ] Payment integration (Omise — PromptPay + credit card)

@@ -1,6 +1,32 @@
+import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import type { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import { CalendarDays, ClipboardList, BarChart3, Lock, RefreshCw, FileDown } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
+  description:
+    'ReserveQ ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก สปา และธุรกิจไทยทุกประเภท บันทึกการจองทางโทรศัพท์ ดูปฏิทินรายวัน รายสัปดาห์ ติดตามสถานะลูกค้า ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
+  openGraph: {
+    type: 'website',
+    locale: 'th_TH',
+    siteName: 'ReserveQ',
+    title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
+    description:
+      'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก และธุรกิจไทย ทดลองใช้ฟรี 30 วัน',
+  },
+  robots: {
+    index: true,
+    follow: false,   // ไม่ให้ follow links ออกจาก landing page
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: false,
+    },
+  },
+}
 
 const features = [
   {
@@ -35,6 +61,22 @@ const features = [
   },
 ]
 
+function BrowserFrame({ url, shadow = 'shadow-md', children }: { url: string; shadow?: string; children: React.ReactNode }) {
+  return (
+    <div className={`rounded-xl overflow-hidden border border-zinc-200 ${shadow}`}>
+      <div className="bg-zinc-100 px-4 py-2 flex items-center gap-2 border-b border-zinc-200">
+        <div className="flex gap-1.5 shrink-0">
+          <div className="w-3 h-3 rounded-full bg-zinc-300" />
+          <div className="w-3 h-3 rounded-full bg-zinc-300" />
+          <div className="w-3 h-3 rounded-full bg-zinc-300" />
+        </div>
+        <div className="flex-1 bg-white rounded-md px-3 py-0.5 text-xs text-zinc-400 truncate">{url}</div>
+      </div>
+      {children}
+    </div>
+  )
+}
+
 const businessTypes = ['🍽 ร้านอาหาร', '💆 ร้านนวด', '🏥 คลินิก', '💅 ร้านเสริมสวย', '🧖 สปา', '📋 และอื่นๆ']
 
 const steps = [
@@ -43,9 +85,46 @@ const steps = [
   { step: '3', title: 'รับจองได้เลย', desc: 'บันทึกการจอง ดูปฏิทิน ติดตามสถานะลูกค้า' },
 ]
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ReserveQ',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก สปา และธุรกิจไทยทุกประเภท',
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'ฟรี',
+      price: '0',
+      priceCurrency: 'THB',
+      description: 'ทดลองใช้ 30 วันไม่จำกัด จากนั้น 30 การจอง/เดือน',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Pro',
+      price: '299',
+      priceCurrency: 'THB',
+      description: 'การจองไม่จำกัด Export CSV รองรับการเติบโต',
+    },
+  ],
+  featureList: [
+    'ปฏิทินรายวัน รายสัปดาห์ รายเดือน',
+    'บันทึกการจองทางโทรศัพท์',
+    'ติดตามสถานะลูกค้า',
+    'สถิติและกราฟช่วงเวลา Busy',
+    'Export CSV (Pro)',
+  ],
+}
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="border-b border-zinc-100 px-5 py-4 flex items-center justify-between max-w-5xl mx-auto">
         <p className="text-xl font-bold text-blue-600">ReserveQ</p>
         <div className="flex items-center gap-2">
@@ -79,6 +158,36 @@ export default function LandingPage() {
             </Button>
           </div>
           <p className="text-xs text-zinc-400">ไม่ต้องใช้บัตรเครดิต · ยกเลิกได้ทุกเมื่อ</p>
+        </section>
+
+        {/* Screenshots */}
+        <section className="py-16 border-t border-zinc-100">
+          <div className="text-center mb-10 space-y-2">
+            <h2 className="text-2xl font-bold text-zinc-900">ดูก่อน ตัดสินใจทีหลัง</h2>
+            <p className="text-zinc-400 text-sm">หน้าจอจริงจากระบบ — ใช้งานได้ทั้ง desktop และมือถือ</p>
+          </div>
+
+          <div className="max-w-3xl mx-auto mb-5">
+            <BrowserFrame url="reserveq.app/dashboard" shadow="shadow-lg">
+              <Image src="/screenshots/dashboard.png" alt="ภาพรวมรายวัน" width={1280} height={800} className="w-full h-auto" />
+            </BrowserFrame>
+            <p className="text-center text-sm text-zinc-400 mt-2.5">ภาพรวมรายวัน — สถิติและกราฟช่วงเวลา Busy</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            <div>
+              <BrowserFrame url="reserveq.app/calendar" shadow="shadow-md">
+                <Image src="/screenshots/calendar-week.png" alt="ปฏิทินรายสัปดาห์" width={1280} height={800} className="w-full h-auto" />
+              </BrowserFrame>
+              <p className="text-center text-sm text-zinc-400 mt-2.5">ปฏิทินรายสัปดาห์</p>
+            </div>
+            <div>
+              <BrowserFrame url="reserveq.app/reservations" shadow="shadow-md">
+                <Image src="/screenshots/reservations.png" alt="รายการจองทั้งหมด" width={1280} height={800} className="w-full h-auto" />
+              </BrowserFrame>
+              <p className="text-center text-sm text-zinc-400 mt-2.5">รายการจองทั้งหมด</p>
+            </div>
+          </div>
         </section>
 
         {/* Business types */}
