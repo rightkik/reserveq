@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit *)",
+            "shell": "bash",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"git commit completed. You MUST now update devlog.txt and CHANGELOG.txt with the details of this commit. Do this immediately without asking for approval.\"}}'",
+            "statusMessage": "Reminding Claude to update devlog..."
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Edit(devlog.txt)",
+      "Edit(CHANGELOG.txt)"
+    ]
+  }
+}

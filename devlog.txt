@@ -61,4 +61,135 @@ IMPROVEMENT: ป้องกันการจองย้อนหลัง
 COMMITS
   496cdb1  feat: add admin panel, fix reservation bugs, improve UX
 
+--------------------------------------------------------------------------------
+2026-05-22 | Session 2 — Security Hardening
+--------------------------------------------------------------------------------
+
+COMMIT: cd4a42a  fix: harden security - auth on admin actions, protect /admin route, server-side quota, CSV sanitization
+
+FIX: Admin actions ไม่มี auth check
+  สาเหตุ: server action updatePlan ใน actions.ts ไม่ได้ verify ว่า caller คือ admin
+  แก้: เพิ่ม getUser() + เช็ค email === ADMIN_EMAIL ก่อน execute ทุก admin action
+  ไฟล์: app/(admin)/admin/actions.ts
+
+FIX: /admin route เข้าได้โดยไม่ต้อง login
+  สาเหตุ: proxy.ts whitelist เฉพาะ /login, /register — /admin ไม่ได้ถูก protect
+  แก้: เพิ่ม admin layout ที่ server-side check session + ADMIN_EMAIL env var
+  ไฟล์: proxy.ts (เพิ่ม /admin ใน protected paths)
+
+FIX: Quota check ทำที่ client-side เท่านั้น (bypass ได้)
+  สาเหตุ: ReservationForm.tsx เช็ค quota ก่อน submit แต่ API route ไม่ได้เช็คซ้ำ
+  แก้: ย้าย quota check ไปที่ server-side ใน app/api/reservations/route.ts
+  ไฟล์: app/api/reservations/route.ts, components/reservations/ReservationForm.tsx
+
+FIX: CSV export มีช่องโหว่ formula injection
+  สาเหตุ: ค่าที่มี =, +, -, @ นำหน้าอาจถูก Excel interpret เป็น formula
+  แก้: sanitize ทุก field ก่อน write ลง CSV (prefix tab ถ้าเริ่มด้วยอักขระเสี่ยง)
+  ไฟล์: app/api/reservations/export/route.ts
+
+--------------------------------------------------------------------------------
+2026-05-22 | Session 3 — Calendar & Logo Features
+--------------------------------------------------------------------------------
+
+COMMITS:
+  6cace4f  feat: add month calendar view, reservation counts, last login tracking, shop logo upload
+  2d75bae  feat: show shop logo in sidebar with No Logo fallback
+
+FEATURE: Month Calendar View
+  - เพิ่ม MonthView.tsx — grid 6x7 แสดงจำนวน reservation ต่อวัน
+  - Calendar page toggle: Day / Week / Month
+  - คลิกวันใน month view -> switch ไป day view วันนั้น
+  ไฟล์ใหม่: components/calendar/MonthView.tsx
+  ไฟล์แก้: app/(dashboard)/calendar/page.tsx
+
+FEATURE: Reservation count badges บน WeekView
+  - แต่ละวันใน week view แสดง badge จำนวนการจอง
+  ไฟล์: components/calendar/WeekView.tsx
+
+FEATURE: Shop logo upload
+  - Settings page — upload รูป logo ร้าน (เก็บใน Supabase Storage)
+  - เพิ่ม logo_url column ใน profiles (ALTER TABLE)
+  ไฟล์: app/(dashboard)/settings/page.tsx, types/index.ts
+  SQL ที่รันเพิ่ม:
+    ALTER TABLE profiles ADD COLUMN IF NOT EXISTS logo_url TEXT;
+
+FEATURE: Shop logo ใน Sidebar
+  - SidebarNav และ Dashboard layout แสดง logo ถ้ามี
+  - Fallback: แสดงข้อความ "No Logo" ถ้ายังไม่ได้ upload
+  ไฟล์: app/(dashboard)/layout.tsx, components/dashboard/SidebarNav.tsx
+
+FEATURE: Last login tracking
+  - บันทึก last_login_at ทุกครั้งที่ user login สำเร็จ
+  - แสดงในหน้า Admin panel
+  ไฟล์: app/(auth)/login/page.tsx, app/(admin)/admin/page.tsx
+  SQL ที่รันเพิ่ม:
+    ALTER TABLE profiles ADD COLUMN IF NOT EXISTS last_login_at TIMESTAMPTZ;
+
+--------------------------------------------------------------------------------
+2026-05-22 | Session 4 — Landing Page & Auth Improvements
+--------------------------------------------------------------------------------
+
+COMMITS:
+  4c1e0b1  feat: redesign landing page with clearer messaging and new sections
+  e8751ee  feat: add email display, change password, forgot/reset password flow
+
+FEATURE: Landing page redesign
+  - ปรับ hero messaging ให้ชัดขึ้น — เน้น pain point เจ้าของร้าน
+  - เพิ่ม sections: How it works, Testimonials (placeholder), FAQ
+  - ปรับ pricing section ให้เด่นขึ้น
+  ไฟล์: app/page.tsx
+
+FEATURE: แสดง email ใน Settings
+  - Settings page แสดง email ของ user ที่ login อยู่ (read-only)
+  ไฟล์: app/(dashboard)/settings/page.tsx
+
+FEATURE: เปลี่ยนรหัสผ่าน (Change Password)
+  - form กรอก new password + confirm ใน Settings page
+  - ใช้ supabase.auth.updateUser({ password })
+  ไฟล์: app/(dashboard)/settings/page.tsx
+
+FEATURE: Forgot Password flow
+  - หน้า /forgot-password — กรอก email -> ส่ง reset link ผ่าน Supabase Auth
+  - ลิงก์ "ลืมรหัสผ่าน?" ใน login page
+  ไฟล์ใหม่: app/(auth)/forgot-password/page.tsx
+  ไฟล์แก้: app/(auth)/login/page.tsx
+
+FEATURE: Reset Password flow
+  - หน้า /reset-password — รับ token จาก URL -> set new password
+  - Supabase ส่ง magic link มาในอีเมล -> redirect มาหน้านี้
+  ไฟล์ใหม่: app/(auth)/reset-password/page.tsx
+
+--------------------------------------------------------------------------------
+2026-05-22 | Session 5 — Support Page & Resend Integration
+--------------------------------------------------------------------------------
+
+COMMITS:
+  cc59a18  feat: add support page, reorder settings, add resend email integration
+  31b53ba  fix: send support emails to resend account email (chino_bc@hotmail.com)
+
+FEATURE: Support Page
+  - หน้า /support — form กรอก subject + message ส่งถึงทีม support
+  - เข้าถึงจาก sidebar nav
+  ไฟล์ใหม่: app/(dashboard)/support/page.tsx
+
+FEATURE: Resend email integration
+  - ติดตั้ง resend package สำหรับส่ง transactional email
+  - API route รับ form data -> ส่ง email ผ่าน Resend
+  ไฟล์ใหม่: app/api/support/route.ts
+  Package เพิ่ม: resend
+  Env var ที่ต้องเพิ่ม: RESEND_API_KEY=<key from resend.com>
+
+FIX: Support email ส่งไปผิด address
+  สาเหตุ: from/to email ใน Resend ต้องใช้ verified domain หรือ account email
+  แก้: เปลี่ยน to เป็น chino_bc@hotmail.com (Resend account email ที่ verify แล้ว)
+  ไฟล์: app/api/support/route.ts
+
+IMPROVEMENT: จัดเรียง Settings sections ใหม่
+  - ลำดับใหม่: ข้อมูลร้าน -> บัญชีผู้ใช้ -> รหัสผ่าน -> แผน -> Danger zone
+  ไฟล์: app/(dashboard)/settings/page.tsx
+
+IMPROVEMENT: เพิ่ม Support ใน Sidebar nav
+  - เพิ่มลิงก์ไปหน้า /support ใน SidebarNav
+  ไฟล์: components/dashboard/SidebarNav.tsx
+
 ================================================================================
