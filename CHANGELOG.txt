@@ -160,6 +160,26 @@ Supabase Setup Required (manual — run in SQL Editor)
            - อัปเดต devlog.txt + CHANGELOG.txt รอบสุดท้าย
 
 ================================================================================
+  [2026-05-23]  Session 7 — Register Notification & Support Rate Limit
+================================================================================
+
+  FEATURE  แจ้งเตือนสมาชิกใหม่ทางอีเมล  [a969f2c]
+           - เมื่อมีคน register ส่งอีเมลแจ้ง chino_bc@hotmail.com ทันที
+           - เนื้อหา: ชื่อร้าน, อีเมล, วันเวลาสมัคร (timezone ไทย)
+           - fire-and-forget — ไม่ block registration flow ถ้าส่งเมลล้มเหลว
+           ไฟล์ใหม่: app/api/notify/register/route.ts
+           ไฟล์แก้: app/(auth)/register/page.tsx
+
+  FEATURE  Support rate limit 3 ครั้ง/วัน/ร้าน  [a969f2c]
+           - API เช็ค count ใน support_tickets table (timezone ไทย)
+           - เกิน limit: คืน 429 + ข้อความภาษาไทย
+           - UI แสดง "ส่งได้อีก X/3 ครั้งวันนี้" โหลดจาก GET /api/support
+           - ครบ limit: ซ่อน form แสดงหน้า ⏳ แทน
+           - เพิ่ม GET endpoint ใน /api/support สำหรับดึง count
+           ไฟล์แก้: app/api/support/route.ts, app/(dashboard)/support/page.tsx
+           Supabase SQL: สร้าง support_tickets table + RLS policies
+
+================================================================================
   TODO — Phase 2
 ================================================================================
   [ ] Payment integration (Omise — PromptPay + credit card)

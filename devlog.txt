@@ -297,4 +297,41 @@ CHORE: Log sync for GA4 commit  [09f2a8d]
 CHORE: Final log sync  [07dfc25 → df6397a]
   - อัปเดต devlog.txt + CHANGELOG.txt รอบสุดท้าย
 
+--------------------------------------------------------------------------------
+2026-05-23 | Session 7 — Register Notification & Support Rate Limit
+--------------------------------------------------------------------------------
+
+COMMITS:
+  a969f2c  feat: email notification on register + support rate limit (3/day)
+
+FEATURE: แจ้งเตือนสมาชิกใหม่ทางอีเมล
+  - เมื่อมีคน register ระบบจะส่งอีเมลแจ้ง chino_bc@hotmail.com ทันที
+  - เนื้อหา: ชื่อร้าน, อีเมล, วันเวลาสมัคร (timezone ไทย)
+  - ส่งแบบ fire-and-forget ไม่ block registration flow
+  ไฟล์ใหม่: app/api/notify/register/route.ts
+  ไฟล์แก้: app/(auth)/register/page.tsx
+
+FEATURE: Rate limit หน้าแจ้งปัญหา (3 ครั้ง/วัน/ร้าน)
+  - แต่ละร้านส่ง support ticket ได้วันละไม่เกิน 3 ครั้ง (นับตาม timezone ไทย)
+  - เกิน 3 ครั้ง: API คืน 429, ซ่อน form แสดงหน้า ⏳ แทน
+  - UI แสดง "ส่งได้อีก X/3 ครั้งวันนี้" ใต้ปุ่ม — โหลดจาก GET /api/support ตอนเปิดหน้า
+  - บันทึก ticket ลง support_tickets table ก่อนส่งอีเมลทุกครั้ง
+  ไฟล์แก้: app/api/support/route.ts, app/(dashboard)/support/page.tsx
+
+  SQL ที่ต้องรันใน Supabase SQL Editor:
+    create table support_tickets (
+      id         uuid primary key default gen_random_uuid(),
+      user_id    uuid references auth.users(id) on delete cascade not null,
+      category   text not null,
+      subject    text not null,
+      detail     text not null,
+      phone      text,
+      created_at timestamptz default now() not null
+    );
+    alter table support_tickets enable row level security;
+    create policy "insert own" on support_tickets
+      for insert with check (auth.uid() = user_id);
+    create policy "select own" on support_tickets
+      for select using (auth.uid() = user_id);
+
 ================================================================================
