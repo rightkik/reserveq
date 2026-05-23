@@ -228,4 +228,17 @@ FEATURE: SEO Improvements
   ไฟล์ใหม่: app/robots.ts
   ไฟล์แก้: app/layout.tsx, app/page.tsx
 
+FEATURE: Brand Logo Mark
+  - ออกแบบ logo mark "Q·Check Dark + Blue Accent"
+    • Black rounded square (#09090B) + white Q ring + white tail + blue checkmark (#60A5FA)
+    • Hybrid ของ "confident/premium" (Concept 01) + "Q·Check" (Concept 03)
+    • ทำงานได้ทุก size ตั้งแต่ favicon 16px จนถึง app icon
+  - public/logo.svg — brand mark หลัก
+  - app/icon.svg — Next.js favicon (auto-picked โดย App Router)
+  - Landing page header: แทน plain text "ReserveQ" ด้วย logo mark + wordmark
+  - Landing page footer: เพิ่ม logo mark เล็กๆ
+  - SidebarNav: แทน uppercase label "RESERVEQ" ด้วย logo mark + wordmark
+  ไฟล์ใหม่: public/logo.svg, app/icon.svg
+  ไฟล์แก้: app/page.tsx, components/dashboard/SidebarNav.tsx
+
 ================================================================================

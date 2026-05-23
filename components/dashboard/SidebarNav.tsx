@@ -29,7 +29,10 @@ export function SidebarNav({ shopName, logoUrl }: { shopName: string; logoUrl?: 
   return (
     <aside className="hidden md:flex flex-col w-56 bg-white border-r border-zinc-200 min-h-screen">
       <div className="p-4 border-b border-zinc-200 space-y-3">
-        <p className="text-xs text-zinc-400 font-medium uppercase tracking-wide">ReserveQ</p>
+        <div className="flex items-center gap-2">
+          <Image src="/logo.svg" alt="ReserveQ" width={22} height={22} className="rounded-md" />
+          <span className="text-sm font-bold text-zinc-800 tracking-tight">Reserve<span className="text-blue-500">Q</span></span>
+        </div>
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-lg border border-zinc-200 overflow-hidden shrink-0 bg-zinc-50 flex items-center justify-center">
             {logoUrl ? (

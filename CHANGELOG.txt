@@ -113,6 +113,13 @@ Supabase Setup Required (manual — run in SQL Editor)
              JSON-LD SoftwareApplication (offers Free ฿0 / Pro ฿299, featureList)
            ไฟล์: app/robots.ts (ใหม่), app/layout.tsx, app/page.tsx
 
+  FEATURE  Brand logo mark — Q·Check Dark + Blue Accent
+           - public/logo.svg + app/icon.svg (favicon auto-picked by Next.js)
+           - Black sq + white Q ring + blue checkmark accent
+           - Landing header/footer + dashboard sidebar ใช้ mark จริงแทน plain text
+           ไฟล์: public/logo.svg (ใหม่), app/icon.svg (ใหม่),
+                  app/page.tsx, components/dashboard/SidebarNav.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

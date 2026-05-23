@@ -126,7 +126,10 @@ export default function LandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <header className="border-b border-zinc-100 px-5 py-4 flex items-center justify-between max-w-5xl mx-auto">
-        <p className="text-xl font-bold text-blue-600">ReserveQ</p>
+        <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo.svg" alt="ReserveQ" width={32} height={32} className="rounded-lg" />
+            <span className="text-xl font-bold text-zinc-900 tracking-tight">Reserve<span className="text-blue-600">Q</span></span>
+          </Link>
         <div className="flex items-center gap-2">
           <Button asChild variant="ghost" size="sm">
             <Link href="/login">เข้าสู่ระบบ</Link>
@@ -279,6 +282,10 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t border-zinc-100 py-8 text-center text-sm text-zinc-400">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Image src="/logo.svg" alt="ReserveQ" width={20} height={20} className="rounded-md opacity-60" />
+          <span className="font-semibold text-zinc-500">ReserveQ</span>
+        </div>
         © 2026 ReserveQ · ระบบจองคิวสำหรับธุรกิจไทย
       </footer>
     </div>
