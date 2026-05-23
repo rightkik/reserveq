@@ -46,6 +46,12 @@ export default function RegisterPage() {
         setLoading(false)
         return
       }
+
+      fetch('/api/notify/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.user.email, shopName }),
+      }).catch(() => {})
     }
 
     router.push('/dashboard')
