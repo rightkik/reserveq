@@ -294,7 +294,7 @@ FEATURE: Google Analytics 4 (GA4)
 CHORE: Log sync for GA4 commit  [09f2a8d]
   - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit 7a8793a
 
-CHORE: Final log sync  [07dfc25]
+CHORE: Final log sync  [07dfc25 → df6397a]
   - อัปเดต devlog.txt + CHANGELOG.txt รอบสุดท้าย
 
 ================================================================================
