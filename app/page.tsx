@@ -192,7 +192,7 @@ export default function LandingPage() {
 
           <div className="max-w-3xl mx-auto mb-5">
             <BrowserFrame url="reserveq.app/dashboard" shadow="shadow-lg">
-              <Image src="/screenshots/dashboard.png" alt="ภาพรวมรายวัน" width={1280} height={800} className="w-full h-auto" />
+              <Image src="/screenshots/dashboard.png" alt="ภาพรวมรายวัน" width={1280} height={800} className="w-full h-auto" priority />
             </BrowserFrame>
             <p className="text-center text-sm text-zinc-400 mt-2.5">ภาพรวมรายวัน — สถิติและกราฟช่วงเวลา Busy</p>
           </div>

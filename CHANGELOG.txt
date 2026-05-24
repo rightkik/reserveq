@@ -180,6 +180,23 @@ Supabase Setup Required (manual — run in SQL Editor)
            Supabase SQL: สร้าง support_tickets table + RLS policies
 
 ================================================================================
+  [2026-05-24]  Session 8 — SEO & Performance Audit (Landing Page)
+================================================================================
+
+  CHORE    Favicon ลงทะเบียน
+           - เพิ่ม app/icon.svg (copy จาก public/logo.svg)
+           - Next.js App Router จะ auto-serve เป็น favicon ใน <head>
+
+  CHORE    LCP image priority
+           - เพิ่ม priority prop ให้ dashboard.png (screenshot หลัก)
+           - Next.js จะ inject <link rel="preload"> → ลด LCP time
+           ไฟล์แก้: app/page.tsx
+
+  CHORE    Sitemap
+           - เพิ่ม app/sitemap.ts — expose /sitemap.xml สำหรับ landing page เท่านั้น
+           ไฟล์ใหม่: app/sitemap.ts
+
+================================================================================
   TODO — Phase 2
 ================================================================================
   [ ] Payment integration (Omise — PromptPay + credit card)
