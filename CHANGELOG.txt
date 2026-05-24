@@ -196,6 +196,17 @@ Supabase Setup Required (manual — run in SQL Editor)
            - เพิ่ม app/sitemap.ts — expose /sitemap.xml สำหรับ landing page เท่านั้น
            ไฟล์ใหม่: app/sitemap.ts
 
+  CHORE    SEO & copywriting pass สำหรับ landing page
+           - Title: เปลี่ยนเป็น keyword-first "ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา"
+           - Meta description: เพิ่ม keyword CTR triggers (ตารางจอง, ลดการจดคิว, ทดลองใช้ฟรี)
+           - Hero h1: ขึ้นต้นด้วย product category แทน tagline → SEO + clarity ดีขึ้น
+           - เพิ่ม Problem/Solution section (ก่อน/หลังใช้ ReserveQ) เพื่อ conversion
+           - Section headings: เพิ่ม keyword (ระบบจองคิว) ใน screenshots + features heading
+           - Image alt texts: เพิ่ม brand name + context ใน alt ทุกรูป
+           - JSON-LD: เปลี่ยนเป็น @graph รวม Organization schema + SoftwareApplication
+           - Footer: เพิ่ม "ออนไลน์" ใน tagline
+           ไฟล์แก้: app/page.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

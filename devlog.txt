@@ -354,4 +354,15 @@ CHORE: Sitemap
   - ช่วยให้ Google Search Console verify canonical URL ได้ง่าย
   ไฟล์ใหม่: app/sitemap.ts
 
+CHORE: SEO & copywriting pass (landing page)
+  - Title → keyword-first: "ReserveQ | ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา"
+  - Meta description → เพิ่ม keyword intent: ตารางจอง, ลดการจดคิว, ทดลองใช้ฟรี
+  - Hero h1 → นำด้วย product category แทน tagline (SEO + ความชัดเจน)
+  - เพิ่ม Problem/Solution section → before/after card (ก่อน/หลังใช้ ReserveQ)
+  - Screenshot heading → "ตัวอย่างหน้าจอระบบจองคิว ReserveQ" (มี keyword)
+  - Features heading → "ฟีเจอร์ระบบจองคิวที่ช่วยให้ร้านจัดการง่ายขึ้น"
+  - Image alt texts → เพิ่ม brand + context ทุกรูป
+  - JSON-LD → @graph รวม Organization schema + SoftwareApplication
+  ไฟล์แก้: app/page.tsx
+
 ================================================================================

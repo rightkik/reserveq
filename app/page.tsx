@@ -8,9 +8,9 @@ import { CalendarDays, ClipboardList, BarChart3, Lock, RefreshCw, FileDown } fro
 const SITE_URL = 'https://izq.vercel.app'
 
 export const metadata: Metadata = {
-  title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
+  title: 'ReserveQ | ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา',
   description:
-    'ReserveQ ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก สปา และธุรกิจไทยทุกประเภท บันทึกการจองทางโทรศัพท์ ดูปฏิทินรายวัน รายสัปดาห์ ติดตามสถานะลูกค้า ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
+    'ReserveQ ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา จัดการตารางจอง ดูปฏิทิน ติดตามลูกค้า และลดการจดคิวลงกระดาษ ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
   alternates: {
     canonical: SITE_URL,
   },
@@ -19,22 +19,22 @@ export const metadata: Metadata = {
     url: SITE_URL,
     locale: 'th_TH',
     siteName: 'ReserveQ',
-    title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
+    title: 'ReserveQ | ระบบจองคิวออนไลน์สำหรับธุรกิจบริการไทย',
     description:
-      'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก และธุรกิจไทย ทดลองใช้ฟรี 30 วัน',
+      'ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา จัดการตารางจอง ติดตามลูกค้า ทดลองใช้ฟรี 30 วัน',
     images: [
       {
         url: `${SITE_URL}/screenshots/dashboard.png`,
         width: 1280,
         height: 800,
-        alt: 'ReserveQ — ระบบจัดการการจองสำหรับธุรกิจไทย',
+        alt: 'หน้าจอภาพรวมระบบจองคิว ReserveQ',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ReserveQ — เลิกจดจองลงกระดาษ จัดการทุกการจองในที่เดียว',
-    description: 'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก และธุรกิจไทย ทดลองใช้ฟรี 30 วัน',
+    title: 'ReserveQ | ระบบจองคิวออนไลน์สำหรับธุรกิจบริการไทย',
+    description: 'ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา จัดการตารางจอง ติดตามลูกค้า ทดลองใช้ฟรี 30 วัน',
     images: [`${SITE_URL}/screenshots/dashboard.png`],
   },
   robots: {
@@ -105,36 +105,62 @@ const steps = [
   { step: '3', title: 'รับจองได้เลย', desc: 'บันทึกการจอง ดูปฏิทิน ติดตามสถานะลูกค้า' },
 ]
 
+const problems = [
+  'จองซ้ำโดยไม่รู้ตัว คิวชนกัน',
+  'หากระดาษจดคิวไม่เจอ',
+  'ลูกค้า no-show ไม่มีการติดตาม',
+  'เช็คคิวได้แค่คนที่อยู่หน้าร้าน',
+]
+
+const solutions = [
+  'ดูปฏิทินคิวได้ทันที ไม่มีชนกัน',
+  'ค้นหาการจองได้ทุกที่ ทุกเวลา',
+  'ติดตามสถานะลูกค้าทุกราย',
+  'เปิดดูจากมือถือได้ทุกที่',
+]
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'ReserveQ',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  description:
-    'ระบบจัดการการจองสำหรับร้านอาหาร ร้านนวด คลินิก สปา และธุรกิจไทยทุกประเภท',
-  offers: [
+  '@graph': [
     {
-      '@type': 'Offer',
-      name: 'ฟรี',
-      price: '0',
-      priceCurrency: 'THB',
-      description: 'ทดลองใช้ 30 วันไม่จำกัด จากนั้น 30 การจอง/เดือน',
+      '@type': 'SoftwareApplication',
+      name: 'ReserveQ',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      description:
+        'ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด สปา และธุรกิจบริการไทยทุกประเภท',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'ฟรี',
+          price: '0',
+          priceCurrency: 'THB',
+          description: 'ทดลองใช้ 30 วันไม่จำกัด จากนั้น 30 การจอง/เดือน',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Pro',
+          price: '299',
+          priceCurrency: 'THB',
+          description: 'การจองไม่จำกัด Export CSV รองรับการเติบโต',
+        },
+      ],
+      featureList: [
+        'ระบบจองคิวออนไลน์',
+        'ปฏิทินรายวัน รายสัปดาห์ รายเดือน',
+        'บันทึกการจองทางโทรศัพท์',
+        'ติดตามสถานะลูกค้า',
+        'สถิติและกราฟช่วงเวลา Busy',
+        'Export CSV (Pro)',
+      ],
     },
     {
-      '@type': 'Offer',
-      name: 'Pro',
-      price: '299',
-      priceCurrency: 'THB',
-      description: 'การจองไม่จำกัด Export CSV รองรับการเติบโต',
+      '@type': 'Organization',
+      name: 'ReserveQ',
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.svg`,
+      description: 'ระบบจองคิวออนไลน์สำหรับธุรกิจบริการไทย',
     },
-  ],
-  featureList: [
-    'ปฏิทินรายวัน รายสัปดาห์ รายเดือน',
-    'บันทึกการจองทางโทรศัพท์',
-    'ติดตามสถานะลูกค้า',
-    'สถิติและกราฟช่วงเวลา Busy',
-    'Export CSV (Pro)',
   ],
 }
 
@@ -165,12 +191,12 @@ export default function LandingPage() {
         {/* Hero */}
         <section className="py-20 text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight">
-            เลิกจดจองลงกระดาษ<br />
-            <span className="text-blue-600">จัดการทุกการจองในที่เดียว</span>
+            ระบบจองคิวออนไลน์<br />
+            <span className="text-blue-600">สำหรับร้านอาหาร คลินิก และธุรกิจบริการ</span>
           </h1>
           <p className="text-lg text-zinc-500 max-w-xl mx-auto">
-            สำหรับร้านอาหาร ร้านนวด คลินิก สปา และทุกธุรกิจที่รับจองในไทย<br />
-            บันทึก ติดตาม และดูปฏิทินการจองได้จากทุกอุปกรณ์
+            เลิกจดคิวลงกระดาษ จัดการตารางจอง ดูปฏิทิน และติดตามสถานะลูกค้าได้ครบในที่เดียว<br />
+            บันทึกการจองทางโทรศัพท์ได้ทันที จากทุกอุปกรณ์
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg">
@@ -183,16 +209,42 @@ export default function LandingPage() {
           <p className="text-xs text-zinc-400">ไม่ต้องใช้บัตรเครดิต · ยกเลิกได้ทุกเมื่อ</p>
         </section>
 
+        {/* Problem / Solution */}
+        <section className="py-14 border-t border-zinc-100">
+          <h2 className="text-2xl font-bold text-center text-zinc-900 mb-2">ปัญหาที่หลายร้านเจอทุกวัน</h2>
+          <p className="text-center text-zinc-400 text-sm mb-10">ReserveQ แก้ได้ทุกข้อ</p>
+          <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+            <div className="rounded-xl border border-red-100 bg-red-50 p-6 space-y-3">
+              <p className="font-bold text-red-600 text-sm mb-4">ก่อนใช้ ReserveQ</p>
+              {problems.map(p => (
+                <div key={p} className="flex items-start gap-2 text-sm text-zinc-600">
+                  <span className="text-red-400 font-bold mt-0.5">✗</span>
+                  <span>{p}</span>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-xl border border-green-100 bg-green-50 p-6 space-y-3">
+              <p className="font-bold text-green-700 text-sm mb-4">หลังใช้ ReserveQ</p>
+              {solutions.map(s => (
+                <div key={s} className="flex items-start gap-2 text-sm text-zinc-600">
+                  <span className="text-green-500 font-bold mt-0.5">✓</span>
+                  <span>{s}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Screenshots */}
         <section className="py-16 border-t border-zinc-100">
           <div className="text-center mb-10 space-y-2">
-            <h2 className="text-2xl font-bold text-zinc-900">ดูก่อน ตัดสินใจทีหลัง</h2>
+            <h2 className="text-2xl font-bold text-zinc-900">ตัวอย่างหน้าจอระบบจองคิว ReserveQ</h2>
             <p className="text-zinc-400 text-sm">หน้าจอจริงจากระบบ — ใช้งานได้ทั้ง desktop และมือถือ</p>
           </div>
 
           <div className="max-w-3xl mx-auto mb-5">
             <BrowserFrame url="reserveq.app/dashboard" shadow="shadow-lg">
-              <Image src="/screenshots/dashboard.png" alt="ภาพรวมรายวัน" width={1280} height={800} className="w-full h-auto" priority />
+              <Image src="/screenshots/dashboard.png" alt="หน้าจอภาพรวมระบบจองคิว ReserveQ" width={1280} height={800} className="w-full h-auto" priority />
             </BrowserFrame>
             <p className="text-center text-sm text-zinc-400 mt-2.5">ภาพรวมรายวัน — สถิติและกราฟช่วงเวลา Busy</p>
           </div>
@@ -200,13 +252,13 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             <div>
               <BrowserFrame url="reserveq.app/calendar" shadow="shadow-md">
-                <Image src="/screenshots/calendar-week.png" alt="ปฏิทินรายสัปดาห์" width={1280} height={800} className="w-full h-auto" />
+                <Image src="/screenshots/calendar-week.png" alt="ปฏิทินรายสัปดาห์ระบบจองคิว ReserveQ" width={1280} height={800} className="w-full h-auto" />
               </BrowserFrame>
               <p className="text-center text-sm text-zinc-400 mt-2.5">ปฏิทินรายสัปดาห์</p>
             </div>
             <div>
               <BrowserFrame url="reserveq.app/reservations" shadow="shadow-md">
-                <Image src="/screenshots/reservations.png" alt="รายการจองทั้งหมด" width={1280} height={800} className="w-full h-auto" />
+                <Image src="/screenshots/reservations.png" alt="รายการจองทั้งหมดในระบบจองคิว ReserveQ" width={1280} height={800} className="w-full h-auto" />
               </BrowserFrame>
               <p className="text-center text-sm text-zinc-400 mt-2.5">รายการจองทั้งหมด</p>
             </div>
@@ -227,7 +279,7 @@ export default function LandingPage() {
 
         {/* Features */}
         <section className="py-14 border-t border-zinc-100">
-          <h2 className="text-2xl font-bold text-center text-zinc-900 mb-10">ฟีเจอร์ที่ออกแบบมาสำหรับคุณ</h2>
+          <h2 className="text-2xl font-bold text-center text-zinc-900 mb-10">ฟีเจอร์ระบบจองคิวที่ช่วยให้ร้านจัดการง่ายขึ้น</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="p-5 rounded-xl border border-zinc-100 bg-zinc-50 space-y-2">
@@ -306,7 +358,7 @@ export default function LandingPage() {
           <Image src="/logo.svg" alt="ReserveQ" width={20} height={20} className="rounded-md opacity-60" />
           <span className="font-semibold text-zinc-500">ReserveQ</span>
         </div>
-        © 2026 ReserveQ · ระบบจองคิวสำหรับธุรกิจไทย
+        © 2026 ReserveQ · ระบบจองคิวออนไลน์สำหรับธุรกิจไทย
       </footer>
     </div>
   )
