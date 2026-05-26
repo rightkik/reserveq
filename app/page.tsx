@@ -123,6 +123,17 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'WebSite',
+      name: 'ReserveQ',
+      alternateName: 'ReserveQ ระบบจองคิวออนไลน์',
+      url: SITE_URL,
+      description: 'ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด สปา และธุรกิจบริการไทย',
+      publisher: {
+        '@type': 'Organization',
+        name: 'ReserveQ',
+      },
+    },
+    {
       '@type': 'SoftwareApplication',
       name: 'ReserveQ',
       applicationCategory: 'BusinessApplication',
