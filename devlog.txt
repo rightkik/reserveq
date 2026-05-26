@@ -416,7 +416,7 @@ CHORE: Final log sync  [2043907 → 92e475c]
 2026-05-26 | Session 11 — Landing Page: Business Types Expansion (continued)
 --------------------------------------------------------------------------------
 
-CHORE: Log sync  [cecc09e → 2f89b31]
+CHORE: Log sync  [cecc09e → 4ad7e78]
   - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit af0890b
 
 --------------------------------------------------------------------------------
