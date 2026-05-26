@@ -207,6 +207,21 @@ Supabase Setup Required (manual — run in SQL Editor)
            - Footer: เพิ่ม "ออนไลน์" ใน tagline
            ไฟล์แก้: app/page.tsx
 
+[2026-05-26]  Session 9 — Google Search Console Verification
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  chore: add Google Search Console verification meta tag  [c8cd6c4]
+         - เพิ่ม verification.google: '95cabcf2da426d36' ใน metadata ของ app/layout.tsx
+         - Next.js render <meta name="google-site-verification"> ใน <head> อัตโนมัติ
+         - ใช้สำหรับยืนยัน ownership บน Google Search Console (property: izq.vercel.app)
+         ไฟล์แก้: app/layout.tsx
+
+  fix: correct Google Search Console verification token  [9acb01e]
+         - แก้ token จาก 95cabcf2da426d36 → 24OznMshXi6JQMEA2c7XxZtQ_-LRJkPjJ9EoOAYE91g
+         - token เดิม extract จากชื่อไฟล์ HTML file method (ผิด method)
+         - token ที่ถูกต้องมาจาก HTML tag method ใน Search Console โดยตรง
+         ไฟล์แก้: app/layout.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

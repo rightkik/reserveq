@@ -366,3 +366,27 @@ CHORE: SEO & copywriting pass (landing page)
   ไฟล์แก้: app/page.tsx
 
 ================================================================================
+
+--------------------------------------------------------------------------------
+2026-05-26 | Session 9 — Google Search Console Verification
+--------------------------------------------------------------------------------
+
+COMMITS:
+  c8cd6c4  chore: add Google Search Console verification meta tag
+
+CHORE: Google Search Console Ownership Verification
+  - เพิ่ม verification.google ใน metadata object ใน app/layout.tsx
+  - Next.js จะ render <meta name="google-site-verification" content="95cabcf2da426d36" />
+    อัตโนมัติใน <head> ทุกหน้า
+  - Token: 95cabcf2da426d36 (จาก google95cabcf2da426d36.html)
+  - Property: https://izq.vercel.app/
+  ไฟล์แก้: app/layout.tsx
+
+FIX: แก้ Google Search Console verification token ผิด  [9acb01e]
+  - token ที่ใช้ก่อนหน้า (95cabcf2da426d36) คือ token สำหรับ HTML file method
+    ซึ่ง extract มาจากชื่อไฟล์ google95cabcf2da426d36.html
+  - token ที่ถูกต้องสำหรับ HTML tag method คือ 24OznMshXi6JQMEA2c7XxZtQ_-LRJkPjJ9EoOAYE91g
+    (จาก <meta name="google-site-verification" content="..."> ใน Search Console)
+  ไฟล์แก้: app/layout.tsx
+
+================================================================================
