@@ -8,7 +8,7 @@
             "type": "command",
             "if": "Bash(git commit *)",
             "shell": "bash",
-            "command": "INPUT=$(cat); CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qiE 'pending log updates|log sync|chore.*log sync|commit pending log'; then exit 0; fi; echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"git commit completed. You MUST now update devlog.txt and CHANGELOG.txt with the details of this commit. Do this immediately without asking for approval.\"}}'",
+            "command": "INPUT=$(cat); if echo \"$INPUT\" | grep -qiE 'pending log updates|log sync|commit pending log'; then exit 0; fi; echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"git commit completed. You MUST now update devlog.txt and CHANGELOG.txt with the details of this commit. Do this immediately without asking for approval.\"}}'",
             "statusMessage": "Reminding Claude to update devlog..."
           }
         ]

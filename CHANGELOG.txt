@@ -243,7 +243,9 @@ Supabase Setup Required (manual — run in SQL Editor)
 [2026-05-26]  Session 11 — Landing Page: Business Types Expansion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  CHORE    Log sync + Fix infinite hook loop  [cecc09e → 723aa03]
+  CHORE    Log sync + Fix hook filter (no jq on Windows)  [cecc09e → 0e3217c]
+           - แก้ hook command ใน .claude/settings.json: เปลี่ยนจาก jq
+             เป็น raw grep บน stdin JSON (jq ไม่มีใน bash บน Windows)
            - อัปเดต devlog.txt + CHANGELOG.txt ครอบคลุม commit af0890b
            - แก้ hook ใน .claude/settings.json: เพิ่ม grep filter ข้าม
              commit message ที่เป็น log-sync เพื่อหยุด infinite loop
