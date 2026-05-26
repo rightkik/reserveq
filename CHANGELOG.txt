@@ -240,6 +240,20 @@ Supabase Setup Required (manual — run in SQL Editor)
   CHORE    Final log sync  [2043907 → 92e475c]
            - อัปเดต devlog.txt + CHANGELOG.txt รอบสุดท้าย session 10
 
+[2026-05-26]  Session 11 — Landing Page: Business Types Expansion
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FEAT     ขยาย Business Types section  [af0890b]
+           - แทนที่ pill tags 6 ชิ้นด้วย grid cards 8 ชิ้น (2-col mobile / 4-col desktop)
+           - ครอบคลุม: ร้านเสริมสวย · คลินิกความงาม · ร้านทำเล็บ · ร้านนวด/สปา
+                        ติวเตอร์ · PT/Fitness · ร้านอาหาร · Grooming & Pet Spa
+           - แต่ละ card: emoji icon + ชื่อ + description, hover effect (blue tint)
+           - Semantic HTML <ul>/<li> + aria-labelledby บน section
+           - Metadata title/description อัปเดตให้ครอบคลุมทุก business type
+           - JSON-LD audience[] field เพิ่มเข้า SoftwareApplication schema
+           - keyword paragraph ใต้ grid สำหรับ search crawler
+           ไฟล์แก้: app/page.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================

@@ -412,4 +412,35 @@ CHORE: Log sync  [6820f0f]
 CHORE: Final log sync  [2043907 → 92e475c]
   - อัปเดต devlog.txt + CHANGELOG.txt รอบสุดท้าย session 10
 
+--------------------------------------------------------------------------------
+2026-05-26 | Session 11 — Landing Page: Business Types Expansion
+--------------------------------------------------------------------------------
+
+COMMITS:
+  af0890b  feat: expand business types section with detailed cards and SEO improvements
+
+FEATURE: ขยาย Section "ประเภทธุรกิจที่แนะนำ" ใน Landing Page
+  - แทนที่ pill tags เดิม (6 ชิ้น ไม่มี description) ด้วย grid cards 8 ชิ้น
+  - แต่ละ card มี emoji icon + ชื่อธุรกิจ + description 1 บรรทัด
+  - ประเภทที่ครอบคลุม:
+      💇 ร้านเสริมสวย
+      ✨ คลินิกความงาม
+      💅 ร้านทำเล็บ
+      🧖 ร้านนวด / สปา
+      📚 ติวเตอร์
+      🏋️ PT / Fitness
+      🍽️ ร้านอาหาร
+      🐾 Grooming & Pet Spa
+  - Layout: grid-cols-2 (mobile) → grid-cols-4 (desktop)
+  - Hover effect: blue tint border + background
+  - ใช้ <ul>/<li> semantic HTML ดีกับ accessibility + crawlers
+
+SEO:
+  - metadata title เพิ่ม keyword ทุก business type
+  - metadata description ครอบคลุมทุกประเภทธุรกิจ
+  - เพิ่ม keyword paragraph ใต้ grid (natural text สำหรับ crawl)
+  - JSON-LD SoftwareApplication เพิ่ม audience[] field
+  - <h2> + id + aria-labelledby บน section
+  ไฟล์แก้: app/page.tsx
+
 ================================================================================
