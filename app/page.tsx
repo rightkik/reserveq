@@ -8,9 +8,9 @@ import { CalendarDays, ClipboardList, BarChart3, Lock, RefreshCw, FileDown } fro
 const SITE_URL = 'https://izq.vercel.app'
 
 export const metadata: Metadata = {
-  title: 'ReserveQ | ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา',
+  title: 'ReserveQ | ระบบจองคิวออนไลน์ ร้านเสริมสวย คลินิก ร้านนวด สปา ร้านทำเล็บ PT Grooming',
   description:
-    'ReserveQ ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด และสปา จัดการตารางจอง ดูปฏิทิน ติดตามลูกค้า และลดการจดคิวลงกระดาษ ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
+    'ReserveQ ระบบจองคิวออนไลน์สำหรับร้านเสริมสวย คลินิกความงาม ร้านทำเล็บ ร้านนวด สปา ติวเตอร์ PT/Fitness ร้านอาหาร และ Grooming/Pet Spa จัดการตารางจอง ดูปฏิทิน ติดตามลูกค้า ทดลองใช้ฟรี 30 วัน ไม่ต้องใช้บัตรเครดิต',
   alternates: {
     canonical: SITE_URL,
   },
@@ -97,7 +97,48 @@ function BrowserFrame({ url, shadow = 'shadow-md', children }: { url: string; sh
   )
 }
 
-const businessTypes = ['🍽 ร้านอาหาร', '💆 ร้านนวด', '🏥 คลินิก', '💅 ร้านเสริมสวย', '🧖 สปา', '📋 และอื่นๆ']
+const businessCategories = [
+  {
+    emoji: '💇',
+    name: 'ร้านเสริมสวย',
+    desc: 'ตัดผม ยืด ดัด ทำสี จองคิวช่างรายคน ไม่มีคิวชนกัน',
+  },
+  {
+    emoji: '✨',
+    name: 'คลินิกความงาม',
+    desc: 'จองนัดหมายรักษาผิว โบท็อกซ์ ฟิลเลอร์ เลเซอร์ ตามแพ็คเกจ',
+  },
+  {
+    emoji: '💅',
+    name: 'ร้านทำเล็บ',
+    desc: 'บันทึกคิวลูกค้า เลือกช่าง เลือกแบบ ไม่ต้องรอนาน',
+  },
+  {
+    emoji: '🧖',
+    name: 'ร้านนวด / สปา',
+    desc: 'จัดตารางนวด รายชั่วโมง รายแพ็คเกจ รู้ช่วงเวลา Busy ล่วงหน้า',
+  },
+  {
+    emoji: '📚',
+    name: 'ติวเตอร์',
+    desc: 'จองเวลาเรียนรายคน รายกลุ่ม ดูปฏิทินสอนได้ทุกที่ทุกเวลา',
+  },
+  {
+    emoji: '🏋️',
+    name: 'PT / Fitness',
+    desc: 'จัดตารางเทรน ติดตาม Personal Trainer แต่ละลูกค้าได้ครบ',
+  },
+  {
+    emoji: '🍽️',
+    name: 'ร้านอาหาร',
+    desc: 'รับจองโต๊ะ บันทึกชื่อ เบอร์โทร จำนวนคน ดูภาพรวมได้ทันที',
+  },
+  {
+    emoji: '🐾',
+    name: 'Grooming & Pet Spa',
+    desc: 'จองคิวตัดขนสุนัข แมว dog salon cat grooming ง่ายไม่ยุ่งยาก',
+  },
+]
 
 const steps = [
   { step: '1', title: 'สมัครฟรี', desc: 'ไม่ต้องใช้บัตรเครดิต ทดลองใช้ได้ 30 วันเต็ม' },
@@ -139,7 +180,7 @@ const jsonLd = {
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       description:
-        'ระบบจองคิวออนไลน์สำหรับร้านอาหาร คลินิก ร้านนวด สปา และธุรกิจบริการไทยทุกประเภท',
+        'ระบบจองคิวออนไลน์สำหรับร้านเสริมสวย คลินิกความงาม ร้านทำเล็บ ร้านนวด สปา ติวเตอร์ PT/Fitness ร้านอาหาร และ Grooming/Pet Spa',
       offers: [
         {
           '@type': 'Offer',
@@ -163,6 +204,16 @@ const jsonLd = {
         'ติดตามสถานะลูกค้า',
         'สถิติและกราฟช่วงเวลา Busy',
         'Export CSV (Pro)',
+      ],
+      audience: [
+        'ร้านเสริมสวย',
+        'คลินิกความงาม',
+        'ร้านทำเล็บ',
+        'ร้านนวด สปา',
+        'ติวเตอร์',
+        'PT / Personal Trainer / Fitness',
+        'ร้านอาหาร',
+        'Grooming Pet Spa Dog Salon Cat Grooming',
       ],
     },
     {
@@ -277,15 +328,21 @@ export default function LandingPage() {
         </section>
 
         {/* Business types */}
-        <section className="py-8 border-t border-zinc-100">
-          <p className="text-center text-sm font-medium text-zinc-400 mb-5">เหมาะกับธุรกิจที่รับการจอง</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {businessTypes.map(b => (
-              <span key={b} className="px-4 py-2 rounded-full bg-zinc-50 border border-zinc-200 text-sm text-zinc-600">
-                {b}
-              </span>
-            ))}
+        <section className="py-14 border-t border-zinc-100" aria-labelledby="business-types-heading">
+          <div className="text-center mb-10 space-y-2">
+            <h2 id="business-types-heading" className="text-2xl font-bold text-zinc-900">เหมาะกับธุรกิจบริการทุกประเภท</h2>
+            <p className="text-zinc-400 text-sm max-w-lg mx-auto">ไม่ว่าจะเป็นร้านเล็กหรือใหญ่ ReserveQ ช่วยจัดการคิวและนัดหมายได้ทันที</p>
           </div>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 list-none p-0 m-0">
+            {businessCategories.map(({ emoji, name, desc }) => (
+              <li key={name} className="flex flex-col items-center text-center gap-2 p-5 rounded-xl border border-zinc-100 bg-zinc-50 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                <span className="text-3xl" aria-hidden="true">{emoji}</span>
+                <p className="font-semibold text-zinc-800 text-sm">{name}</p>
+                <p className="text-xs text-zinc-500 leading-relaxed">{desc}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="text-center text-xs text-zinc-400 mt-6">ระบบจองคิวออนไลน์สำหรับร้านเสริมสวย · คลินิกความงาม · ร้านทำเล็บ · ร้านนวด · สปา · ติวเตอร์ · PT / Fitness · ร้านอาหาร · Grooming &amp; Pet Spa</p>
         </section>
 
         {/* Features */}
