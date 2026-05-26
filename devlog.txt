@@ -389,4 +389,21 @@ FIX: แก้ Google Search Console verification token ผิด  [9acb01e]
     (จาก <meta name="google-site-verification" content="..."> ใน Search Console)
   ไฟล์แก้: app/layout.tsx
 
+--------------------------------------------------------------------------------
+2026-05-26 | Session 10 — SEO: WebSite JSON-LD Schema
+--------------------------------------------------------------------------------
+
+COMMITS:
+  c7c9530  seo: add WebSite JSON-LD schema to improve Google site name signal
+
+SEO FIX: เพิ่ม WebSite schema ใน JSON-LD
+  - เพิ่ม '@type': 'WebSite' entry เป็น item แรกใน @graph array ของ jsonLd
+  - fields: name, alternateName, url, description, publisher (Organization)
+  - WebSite schema เป็น signal หลักที่ Google ใช้กำหนดชื่อเว็บใน Search results
+    (ก่อนหน้านี้มีแค่ SoftwareApplication + Organization ไม่มี WebSite)
+  - สาเหตุที่ Google แสดง "Vercel" แทน "ReserveQ": domain izq.vercel.app
+    → Google รู้จัก vercel.app เป็น hosting platform เลยดึงชื่อ platform มาใช้
+  - JSON-LD fix นี้เป็น hint ที่ช่วยได้ แต่ไม่ 100% — แก้ถาวรต้องใช้ custom domain
+  ไฟล์แก้: app/page.tsx
+
 ================================================================================

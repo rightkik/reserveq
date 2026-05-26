@@ -222,6 +222,18 @@ Supabase Setup Required (manual — run in SQL Editor)
          - token ที่ถูกต้องมาจาก HTML tag method ใน Search Console โดยตรง
          ไฟล์แก้: app/layout.tsx
 
+[2026-05-26]  Session 10 — SEO: WebSite JSON-LD Schema
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  SEO      เพิ่ม WebSite JSON-LD schema  [c7c9530]
+           - เพิ่ม '@type': 'WebSite' เป็น item แรกใน @graph array
+           - fields: name "ReserveQ", alternateName, url, description, publisher
+           - WebSite schema คือ signal หลักที่ Google ใช้กำหนดชื่อเว็บใน search results
+           - ก่อนหน้านี้มีแค่ SoftwareApplication + Organization (ขาด WebSite)
+           - หมายเหตุ: แก้ถาวร 100% ต้องผูก custom domain (domain izq.vercel.app
+             ทำให้ Google แสดง "Vercel" เพราะรู้จัก vercel.app เป็น hosting platform)
+           ไฟล์แก้: app/page.tsx
+
 ================================================================================
   TODO — Phase 2
 ================================================================================
