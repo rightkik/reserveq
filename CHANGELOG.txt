@@ -243,6 +243,9 @@ Supabase Setup Required (manual — run in SQL Editor)
 [2026-05-26]  Session 11 — Landing Page: Business Types Expansion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+  CHORE    Log sync  [cecc09e]
+           - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit af0890b
+
   FEAT     ขยาย Business Types section  [af0890b]
            - แทนที่ pill tags 6 ชิ้นด้วย grid cards 8 ชิ้น (2-col mobile / 4-col desktop)
            - ครอบคลุม: ร้านเสริมสวย · คลินิกความงาม · ร้านทำเล็บ · ร้านนวด/สปา
