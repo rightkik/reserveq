@@ -406,4 +406,7 @@ SEO FIX: เพิ่ม WebSite schema ใน JSON-LD
   - JSON-LD fix นี้เป็น hint ที่ช่วยได้ แต่ไม่ 100% — แก้ถาวรต้องใช้ custom domain
   ไฟล์แก้: app/page.tsx
 
+CHORE: Log sync  [6820f0f]
+  - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit c7c9530
+
 ================================================================================

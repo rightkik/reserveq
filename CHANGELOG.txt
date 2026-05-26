@@ -234,6 +234,9 @@ Supabase Setup Required (manual — run in SQL Editor)
              ทำให้ Google แสดง "Vercel" เพราะรู้จัก vercel.app เป็น hosting platform)
            ไฟล์แก้: app/page.tsx
 
+  CHORE    Log sync  [6820f0f]
+           - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit c7c9530
+
 ================================================================================
   TODO — Phase 2
 ================================================================================
