@@ -416,9 +416,15 @@ CHORE: Final log sync  [2043907 → 92e475c]
 2026-05-26 | Session 11 — Landing Page: Business Types Expansion (continued)
 --------------------------------------------------------------------------------
 
-CHORE: Log sync + Hook Fix  [cecc09e → 0e3217c]
+CHORE: Log sync + Hook Fix  [cecc09e → ffde48a]
   - แก้ hook filter ครั้งที่ 2: เปลี่ยนจาก jq (ไม่มีบน Windows) → raw grep บน stdin JSON
-    ทำให้ filter ทำงานได้โดยไม่ต้องพึ่ง jq
+
+FEATURE: เพิ่ม Problem/Solution 2 คู่ใน Landing Page  [5876adb]
+  - ก่อน: ไม่รู้ว่าช่วงเวลาไหนลูกค้าแน่น วางแผนพนักงานไม่ได้
+    หลัง: เห็นกราฟ Busy Hours ล่วงหน้า วางแผนได้ทุกวัน
+  - ก่อน: ข้อมูลลูกค้าหายเมื่อกระดาษเสียหาย หรือพนักงานลาออก
+    หลัง: ข้อมูลเก็บบนคลาวด์ ค้นหาย้อนหลังได้ทุกเมื่อ
+  ไฟล์แก้: app/page.tsx
   - อัปเดต devlog.txt + CHANGELOG.txt ครอบคลุม commit af0890b
   - แก้ infinite loop ใน PostToolUse hook: เพิ่ม grep filter ข้าม commit
     ที่มีข้อความ "pending log updates" / "log sync" ไม่ให้ hook ยิงซ้ำ

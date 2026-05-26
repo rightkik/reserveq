@@ -243,9 +243,14 @@ Supabase Setup Required (manual — run in SQL Editor)
 [2026-05-26]  Session 11 — Landing Page: Business Types Expansion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  CHORE    Log sync + Fix hook filter (no jq on Windows)  [cecc09e → 0e3217c]
+  CHORE    Log sync + Fix hook filter (no jq on Windows)  [cecc09e → ffde48a]
            - แก้ hook command ใน .claude/settings.json: เปลี่ยนจาก jq
              เป็น raw grep บน stdin JSON (jq ไม่มีใน bash บน Windows)
+
+  FEAT     เพิ่ม Problem/Solution 2 คู่ใน Landing Page  [5876adb]
+           - ก่อน: ไม่รู้ช่วงเวลาไหนยุ่ง → หลัง: กราฟ Busy Hours
+           - ก่อน: ข้อมูลหายเมื่อกระดาษเสียหาย → หลัง: คลาวด์ ค้นหาย้อนหลัง
+           ไฟล์แก้: app/page.tsx
            - อัปเดต devlog.txt + CHANGELOG.txt ครอบคลุม commit af0890b
            - แก้ hook ใน .claude/settings.json: เพิ่ม grep filter ข้าม
              commit message ที่เป็น log-sync เพื่อหยุด infinite loop
