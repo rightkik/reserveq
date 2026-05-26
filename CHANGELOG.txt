@@ -243,7 +243,7 @@ Supabase Setup Required (manual — run in SQL Editor)
 [2026-05-26]  Session 11 — Landing Page: Business Types Expansion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  CHORE    Log sync  [cecc09e → 043ffbe]
+  CHORE    Log sync  [cecc09e → a8be347]
            - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit af0890b
 
   FEAT     ขยาย Business Types section  [af0890b]
