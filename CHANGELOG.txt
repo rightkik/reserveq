@@ -243,7 +243,10 @@ Supabase Setup Required (manual — run in SQL Editor)
 [2026-05-26]  Session 11 — Landing Page: Business Types Expansion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  CHORE    Log sync  [cecc09e → a8be347]
+  CHORE    Log sync + Fix infinite hook loop  [cecc09e → 600d425]
+           - อัปเดต devlog.txt + CHANGELOG.txt ครอบคลุม commit af0890b
+           - แก้ hook ใน .claude/settings.json: เพิ่ม grep filter ข้าม
+             commit message ที่เป็น log-sync เพื่อหยุด infinite loop
            - อัปเดต devlog.txt + CHANGELOG.txt ให้ครอบคลุม commit af0890b
 
   FEAT     ขยาย Business Types section  [af0890b]
