@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     index: false,   // default: ไม่ให้ index — landing page จะ override เป็น true
     follow: false,
   },
+  verification: {
+    google: '95cabcf2da426d36',
+  },
 }
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
