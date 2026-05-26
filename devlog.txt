@@ -416,7 +416,7 @@ CHORE: Final log sync  [2043907 → 92e475c]
 2026-05-26 | Session 11 — Landing Page: Business Types Expansion (continued)
 --------------------------------------------------------------------------------
 
-CHORE: Log sync + Hook Fix  [cecc09e → 600d425]
+CHORE: Log sync + Hook Fix  [cecc09e → 767342e]
   - อัปเดต devlog.txt + CHANGELOG.txt ครอบคลุม commit af0890b
   - แก้ infinite loop ใน PostToolUse hook: เพิ่ม grep filter ข้าม commit
     ที่มีข้อความ "pending log updates" / "log sync" ไม่ให้ hook ยิงซ้ำ
